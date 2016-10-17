@@ -1,3 +1,6 @@
+/**
+ * Created by David Sims on 17/10/2016.
+ */
 import objects.*;
 
 import java.io.File;
@@ -8,9 +11,14 @@ import java.util.Date;
 
 public class WarehouseProject
 {
+    public WarehouseProject()
+    {
+
+
+    }
     public static void main(String[] args)
     {
-        System.out.print("Does nothing");
+        WarehouseProject a = new WarehouseProject();
     }
 
     public static void doSale() throws IOException
@@ -47,4 +55,5 @@ public class WarehouseProject
         Date currentDate = new Date();
         return dateformat.format(currentDate);
     }
+
 }
