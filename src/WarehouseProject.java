@@ -1,6 +1,7 @@
 /**
  * Created by David Sims on 17/10/2016.
  */
+import objects.*;
 public class WarehouseProject
 {
     public static void main(String[] args)
