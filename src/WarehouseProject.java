@@ -2,8 +2,8 @@
  * Created by David Sims on 17/10/2016.
  */
 import objects.*;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,6 +20,7 @@ public class WarehouseProject
 
 
     }
+
     public void doSale() throws IOException
     {
 
@@ -45,11 +46,10 @@ public class WarehouseProject
         File invoices = new File("invoices.txt");
         if(!invoices.exists())
             invoices.createNewFile();
-        System.out.print("Sale Invoice\t" + CurrentDate() + "\n" +stockNum + "\t" + quantity);
+        System.out.print("Sale Invoice\t" + currentDate() + "\n" +stockNum + "\t" + quantity);
 
     }
-
-    private String CurrentDate()
+    private String currentDate()
     {
         DateFormat dateformat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         Date currentDate = new Date();
