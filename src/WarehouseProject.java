@@ -21,9 +21,10 @@ public class WarehouseProject
         WarehouseProject a = new WarehouseProject();
     }
 
-    public static void doSale() throws IOException
+    public void doSale() throws IOException
     {
         Runtime.getRuntime().exec("cls");
+
 
         String input;
         String[] temp;
@@ -42,18 +43,22 @@ public class WarehouseProject
         }
     }
 
-    private static void invoice(int stockNum, int quantity) throws IOException {
+    private void invoice(int stockNum, int quantity) throws IOException {
         File invoices = new File("invoices.txt");
         if(!invoices.exists())
             invoices.createNewFile();
         System.out.print("Sale Invoice\t" + CurrentDate() + "\n" +stockNum + "\t" + quantity);
 
     }
-    private static String CurrentDate()
+    private String CurrentDate()
     {
         DateFormat dateformat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         Date currentDate = new Date();
         return dateformat.format(currentDate);
+    }
+    private void print(Boolean nxtLn)
+    {
+
     }
 
 }
