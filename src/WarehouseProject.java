@@ -2,24 +2,24 @@
  * Created by David Sims on 17/10/2016.
  */
 import objects.*;
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class WarehouseProject
 {
+    public ArrayList<Employee> employee = new ArrayList<>();
+    public ArrayList<Stock> Stock = new ArrayList<>();
+
     public WarehouseProject()  {
 
 
     }
-    public static void main(String[] args)
-    {
-        WarehouseProject a = new WarehouseProject();
-    }
-
     public void doSale() throws IOException
     {
 
@@ -48,6 +48,7 @@ public class WarehouseProject
         System.out.print("Sale Invoice\t" + CurrentDate() + "\n" +stockNum + "\t" + quantity);
 
     }
+
     private String CurrentDate()
     {
         DateFormat dateformat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
@@ -62,4 +63,36 @@ public class WarehouseProject
             System.out.print(input);
     }
 
+    private void fillArray() throws IOException {
+        Employee a;
+        Stock b;
+        String elements [];
+        String aLineFromFile;
+        File aFile = new File("CS4125-Warehouse1617\\res\\employee.txt");
+        if (!aFile.exists())
+            aFile.createNewFile();
+        Scanner in = new Scanner(aFile);
+        while (in.hasNext()){
+            aLineFromFile = in.nextLine();
+            elements = aLineFromFile.split(",");
+            a = new Employee(Integer.parseInt(elements[0]), elements[1], elements[2]);
+            employee.add(a);
+        }
+        elements = null;
+        aLineFromFile = "";
+
+
+    }
+
+
+
+
+
+
+
+
+    public static void main(String[] args)
+    {
+        WarehouseProject a = new WarehouseProject();
+    }
 }
