@@ -2,6 +2,9 @@ import objects.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class WarehouseProject
 {
@@ -27,12 +30,21 @@ public class WarehouseProject
         if (sale.checkSale(num, quan))
         {
 
-            invoice();
+            invoice(num, quan);
         }
     }
 
-    private static void invoice()
-    {
+    private static void invoice(int stockNum, int quantity) throws IOException {
         File invoices = new File("invoices.txt");
+        if(!invoices.exists())
+            invoices.createNewFile();
+        System.out.print("Sale Invoice\t" + CurrentDate() + "\n" +stockNum + "\t" + quantity);
+
+    }
+    private static String CurrentDate()
+    {
+        DateFormat dateformat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        Date currentDate = new Date();
+        return dateformat.format(currentDate);
     }
 }
