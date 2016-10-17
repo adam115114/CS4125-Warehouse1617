@@ -11,8 +11,7 @@ import java.util.Date;
 
 public class WarehouseProject
 {
-    public WarehouseProject()
-    {
+    public WarehouseProject()  {
 
 
     }
@@ -23,7 +22,6 @@ public class WarehouseProject
 
     public void doSale() throws IOException
     {
-        Runtime.getRuntime().exec("cls");
 
 
         String input;
@@ -56,9 +54,12 @@ public class WarehouseProject
         Date currentDate = new Date();
         return dateformat.format(currentDate);
     }
-    private void print(Boolean nxtLn)
+    private void print(Object input, Boolean nxtLn)
     {
-
+        if (nxtLn)
+            System.out.println(input);
+        else
+            System.out.print(input);
     }
 
 }
