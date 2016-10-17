@@ -1,8 +1,4 @@
 package objects;
-
-/**
- * Created by David Sims on 17/10/2016.
- */
 public class Stock
 {
     private int stockNum;
@@ -10,13 +6,13 @@ public class Stock
     private int quantity;
     private float price;
 
-    public Stock (int inNum , String inName, int inQuantity, float inPrice)
+    /*public Stock (int inNum , String inName, int inQuantity, float inPrice)
     {
         stockNum = inNum;
         name = inName;
         quantity = inQuantity;
         price = inPrice;
-    }
+    }*/
 
     public int getStockNum() {return stockNum;}
 
@@ -34,4 +30,13 @@ public class Stock
     public void setQuantity(int inQuantity) {quantity = inQuantity;}
 
     public void setPrice(float inPrice) {price = inPrice;}
+
+
+    public boolean checkSale(int inNum, int inQuantity)
+    {
+        if(stockNum == inNum && quantity >= inQuantity)
+            return true;
+        else
+            return false;
+    }
 }
