@@ -5,6 +5,6 @@ public class WarehouseProject
 {
     public static void main(String[] args)
     {
-
+        System.out.print("Does nothing");
     }
 }
