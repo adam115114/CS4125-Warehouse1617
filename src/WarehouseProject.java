@@ -3,7 +3,6 @@
  */
 
 import objects.*;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,15 +12,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.SynchronousQueue;
 import java.util.jar.Pack200;
 
 public class WarehouseProject
 {
+
     public ArrayList<Employee> employee = new ArrayList<>();
     public ArrayList<Stock> stock = new ArrayList<>();
 
-    public WarehouseProject()
-    {
+    public WarehouseProject() throws IOException {
+        fillArray();
         login();
     }
 
@@ -113,7 +114,7 @@ public class WarehouseProject
 
     private void invoice(int stockNum, String name, int quantity, float price) throws IOException
     {
-        File invoices = new File("CS4125-Warehouse1617\\res\\invoices.txt");
+        File invoices = new File("res\\invoices.txt");
         if (!invoices.exists()) invoices.createNewFile();
 
         printToFile(invoices, "Sale Invoice\t" + currentDate() + "\n" + stockNum + "\t" + quantity);
@@ -146,7 +147,7 @@ public class WarehouseProject
         Stock b;
         String elements[];
         String aLineFromFile;
-        File aFile = new File("CS4125-Warehouse1617\\res\\employee.txt");
+        File aFile = new File("res\\employee.txt");
         if (!aFile.exists()) aFile.createNewFile();
         Scanner in = new Scanner(aFile);
         while (in.hasNext())
@@ -156,10 +157,9 @@ public class WarehouseProject
             a = new Employee(Integer.parseInt(elements[0]), elements[1], elements[2]);
             employee.add(a);
         }
-
         elements = null;
         aLineFromFile = "";
-        aFile = new File("CS4125-Warehouse1617\\res\\Stock.txt");
+        aFile = new File("res\\Stock.txt");
         if (!aFile.exists()) aFile.createNewFile();
         in = new Scanner(aFile);
         while (in.hasNext())
@@ -172,13 +172,13 @@ public class WarehouseProject
 
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws IOException {
         WarehouseProject a = new WarehouseProject();
     }
     private void login()
     {
-        String input, pattern = "[0-9]+";
+        String input;
+        String pattern = "[0-9]+";
         int id = 0;
         boolean checker = true, stop = true;
         Scanner in = new Scanner(System.in);
@@ -187,26 +187,35 @@ public class WarehouseProject
             print(outMessage, true);
             input = in.nextLine();
             if (!input.matches(pattern))
-                print("incorrect input. Please try again", true);
-            id = Integer.parseInt(input);
-            for (int x = 0; x <= employee.size() && stop; x++)
-            {
-                if(id == employee.get(x).getEmpno()) {
-                    print("Enter your password", true);
-                    input = in.nextLine();
-                    if (input.matches(employee.get(x).getPassword()))
+                print("incorrect input or ID not recognised. Please try again", true);
+            else {
+                id = Integer.parseInt(input);
+                for (int x = 0; x < employee.size() && stop; x++) {
+                    if (id == employee.get(x).getEmpno())
                     {
-                        print("Login was Successful", true);
-                        stop = false;
-                        checker = true;
+                        print("Enter your password", true);
+                        input = in.nextLine();
+                        if (input.matches(employee.get(x).getPassword()))
+                        {
+                            print("Login was Successful", true);
+                            stop = false;
+                            checker = false;
+                            Menu();
+                        }
+                        else
+                            print("Login was not successful please start again", true);
                     }
-                    else
-                        print("Login was not successful please start again", true);
+                    else if (x == employee.size())
+                        print("That ID was not found, Please try again", true);
                 }
-                else if( x == employee.size())
-                    print("That ID was not found, Please try again", true);
             }
         }
     }
+    private void Menu()
+    {
+        Scanner in = new Scanner(System.in);
+        String menuMessage = "Choose an option(please enter in the format of 1-3):\n1: Update Stock\n2: Sales\n3: Logout";
+        print(menuMessage, true);
 
+    }
 }
