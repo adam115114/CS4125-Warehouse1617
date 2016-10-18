@@ -4,10 +4,7 @@
 
 import objects.*;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,6 +16,7 @@ public class WarehouseProject
 {
     public ArrayList<Employee> employee = new ArrayList<>();
     public ArrayList<Stock> stock = new ArrayList<>();
+    private int userID;
 
     public WarehouseProject() throws IOException {
         fillArray();
@@ -113,11 +111,14 @@ public class WarehouseProject
 
     private void invoice(int stockNum, String name, int quantity, float price) throws IOException
     {
-        File invoices = new File("CS4125-Warehouse1617\\res\\invoices.txt");
-        if (!invoices.exists()) invoices.createNewFile();
-
+        File invoices = new File("res\\invoices.txt");
+        if (!invoices.exists())
+            invoices.createNewFile();
         printToFile(invoices, "Sale Invoice\t" + currentDate() + "\n" + stockNum + "\t" + quantity);
-
+        String rec = "res\\" + userID +"_" + stockNum + "_" + quantity;
+        File receipt = new File("rec");
+        receipt.createNewFile();
+        printToFile(receipt, userID +"," + stockNum + "," + quantity + "," + currentDate());
     }
 
     private String currentDate()
@@ -127,11 +128,14 @@ public class WarehouseProject
         return dateformat.format(currentDate);
     }
 
-    private void printToFile(File aFile, String output) throws IOException
+    private Boolean printToFile(File aFile, String output) throws IOException
     {
-        FileWriter fw = new FileWriter(aFile);
+        FileWriter fw = new FileWriter(aFile, true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(output);
+        bw.close();
+        fw.close();
+        return true;
     }
 
     private void print(Object input, Boolean nxtLn)
@@ -146,7 +150,7 @@ public class WarehouseProject
         Stock b;
         String elements[];
         String aLineFromFile;
-        File aFile = new File("CS4125-Warehouse1617\\res\\employee.txt");
+        File aFile = new File("res\\employee.txt");
         if (!aFile.exists()) aFile.createNewFile();
         Scanner in = new Scanner(aFile);
         while (in.hasNext())
@@ -159,7 +163,7 @@ public class WarehouseProject
 
         elements = null;
         aLineFromFile = "";
-        aFile = new File("CS4125-Warehouse1617\\res\\Stock.txt");
+        aFile = new File("res\\Stock.txt");
         if (!aFile.exists()) aFile.createNewFile();
         in = new Scanner(aFile);
         while (in.hasNext())
