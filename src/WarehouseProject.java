@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.SynchronousQueue;
 import java.util.jar.Pack200;
 
 public class WarehouseProject
@@ -181,7 +182,8 @@ public class WarehouseProject
     }
     private void login()
     {
-        String input, pattern = "[0-9]+";
+        String input;
+        String pattern = "[0-9]+";
         int id = 0;
         boolean checker = true, stop = true;
         Scanner in = new Scanner(System.in);
@@ -190,26 +192,35 @@ public class WarehouseProject
             print(outMessage, true);
             input = in.nextLine();
             if (!input.matches(pattern))
-                print("incorrect input. Please try again", true);
-            id = Integer.parseInt(input);
-            for (int x = 0; x <= employee.size() && stop; x++)
-            {
-                if(id == employee.get(x).getEmpno()) {
-                    print("Enter your password", true);
-                    input = in.nextLine();
-                    if (input.matches(employee.get(x).getPassword()))
+                print("incorrect input or ID not recognised. Please try again", true);
+            else {
+                id = Integer.parseInt(input);
+                for (int x = 0; x < employee.size() && stop; x++) {
+                    if (id == employee.get(x).getEmpno())
                     {
-                        print("Login was Successful", true);
-                        stop = false;
-                        checker = true;
+                        print("Enter your password", true);
+                        input = in.nextLine();
+                        if (input.matches(employee.get(x).getPassword()))
+                        {
+                            print("Login was Successful", true);
+                            stop = false;
+                            checker = false;
+                            Menu();
+                        }
+                        else
+                            print("Login was not successful please start again", true);
                     }
-                    else
-                        print("Login was not successful please start again", true);
+                    else if (x == employee.size())
+                        print("That ID was not found, Please try again", true);
                 }
-                else if( x == employee.size())
-                    print("That ID was not found, Please try again", true);
             }
         }
     }
+    private void Menu()
+    {
+        Scanner in = new Scanner(System.in);
+        String menuMessage = "Choose an option(please enter in the format of 1-3):\n1: Update Stock\n2: Sales\n3: Logout";
+        print(menuMessage, true);
 
+    }
 }
