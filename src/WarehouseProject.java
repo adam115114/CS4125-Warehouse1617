@@ -25,26 +25,6 @@ public class WarehouseProject
         login();
     }
 
-    private void login() throws IOException {
-        int num;
-        String password;
-        Boolean login = true;
-        while (login) {
-            print("Please enter Employee Number:", false);
-            num = Integer.parseInt(System.console().readLine());
-            print("Please enter Password:", false);
-            password = System.console().readLine();
-            for (Employee e : employee) {
-                if (e.empnoCheck(num) && e.passwordCheck(password)) {
-                    mainMenu();
-                }
-            }
-        }
-    public WarehouseProject()
-    {
-        login();
-    }
-
     public void addStock() throws IOException
     {
         String input, temp[];
