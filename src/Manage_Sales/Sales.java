@@ -28,11 +28,13 @@ public class Sales implements Sinter {
         while (!sale) {
             p.print("Please enter sale details(ProductCode Quantity):", true);
             input = in.nextLine();
-            if (input == "end") {
+            p.print("y", true);
+            if (input != "end") {
                 temp = input.split(" ");
                 num = Integer.parseInt(temp[0]);
                 quan = Integer.parseInt(temp[1]);
                 for (int i = 0; i < e.stock.size() && find; i++) {
+                    p.print("y", true);
                     if (e.stock.get(i).getStockNum() == num) {
                         if (e.stock.get(i).getQuantity() >= quan) {
                             find = true;
@@ -71,6 +73,7 @@ public class Sales implements Sinter {
         String rec = "res\\Receipts\\" + "zxcv" ;
         File receipt = new File("rec");
         receipt.createNewFile();
+        p.print("Sale Invoice\t" + currentDate() + "\n" + out + "\n" + total, true);
         p.printToFile(receipt, "Sale Invoice\t" + currentDate() + "\n" + out + "\n" + total);
     }
 

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 public class Print {
 
     public static void print(Object obj, boolean check) {
