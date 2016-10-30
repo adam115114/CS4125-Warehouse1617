@@ -27,8 +27,7 @@ public class DataReader implements Dinter{
         File aFile = new File("res\\employee.txt");
         if (!aFile.exists()) aFile.createNewFile();
         Scanner in = new Scanner(aFile);
-        while (in.hasNext())
-        {
+        while (in.hasNext()) {
             aLineFromFile = in.nextLine();
             elements = aLineFromFile.split(",");
             a = new Employee(Integer.parseInt(elements[0]), elements[1], elements[2]);
@@ -40,14 +39,14 @@ public class DataReader implements Dinter{
         aFile = new File("res\\Stock.txt");
         if (!aFile.exists()) aFile.createNewFile();
         in = new Scanner(aFile);
-        while (in.hasNext())
-        {
+        while (in.hasNext()) {
             aLineFromFile = in.nextLine();
             elements = aLineFromFile.split(",");
             b = new Stock(Integer.parseInt(elements[0]), elements[1], Integer.parseInt(elements[2]), Float.parseFloat(elements[3]));
             stock.add(b);
         }
     }
+
     public void update() {
 
     }

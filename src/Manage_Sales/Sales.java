@@ -57,6 +57,8 @@ public class Sales implements Sinter {
 
     }
 
+    public void invoice() {
+
     public void invoice() throws IOException {
         String out = "";
         float total = 0;
@@ -74,12 +76,16 @@ public class Sales implements Sinter {
         p.printToFile(receipt, "Sale Invoice\t" + currentDate() + "\n" + out + "\n" + total);
     }
 
+    public void cancel() {
+
     private String currentDate() {
         DateFormat dateformat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         Date currentDate = new Date();
         return dateformat.format(currentDate);
     }
 
+    public static void main(String args[]) {
+        Sales s = new Sales();
     public void cancel() {
 
     }
