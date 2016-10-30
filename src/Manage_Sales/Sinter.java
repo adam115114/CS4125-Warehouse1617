@@ -1,11 +1,13 @@
 package Manage_Sales;
 
+import java.io.IOException;
+
 interface Sinter {
-    void sell();
+    void sale() throws IOException;
 
     void buy();
 
-    void invoice();
+    void invoice() throws IOException;
 
     void cancel();
 }

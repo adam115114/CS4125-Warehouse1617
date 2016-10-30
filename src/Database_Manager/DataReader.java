@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Created by David Sims on 30/10/2016.
- */
 public class DataReader implements Dinter{
 
     public ArrayList<Employee> employee = new ArrayList<>();
@@ -21,6 +18,8 @@ public class DataReader implements Dinter{
     }
     public void read() throws IOException
     {
+        employee.clear();
+        stock.clear();
         Employee a;
         Stock b;
         String elements[];

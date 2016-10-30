@@ -6,10 +6,6 @@ import java.util.Scanner;
 
 import Database_Manager.DataReader;
 
-/**
- * Created by adam on 30/10/2016.
- */
-
 public class logIn {
 
     public logIn() throws IOException {

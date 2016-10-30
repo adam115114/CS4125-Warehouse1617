@@ -1,5 +1,7 @@
 package Console;
 
+import Manage_Sales.Sales;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -25,6 +27,8 @@ public class menu {
                         break;
                     case 2:
                         Print.print("doSale();", true);
+                        Sales s = new Sales();
+                        s.sale();
                         checker = false;
                         break;
                     case 3:
