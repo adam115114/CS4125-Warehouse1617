@@ -16,13 +16,15 @@ public class StockMenu {
             input = in.nextLine();
             if (!input.matches(pattern))
                 Print.print("Input was incorrect. Please try again", true);
-            else{
+            else {
                 option = Integer.parseInt(input);
-                switch (option){
-                    case 1: Print.print("view stock", true);
+                switch (option) {
+                    case 1:
+                        Print.print("view stock", true);
                         checker = false;
                         break;
-                    case 2: Print.print("update stock",true);
+                    case 2:
+                        Print.print("update stock", true);
                         checker = false;
                         break;
                 }
