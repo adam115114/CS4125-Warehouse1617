@@ -1,33 +1,48 @@
 package objects;
-public class Stock
-{
+
+public class Stock {
     private int stockNum;
     private String name;
     private int quantity;
     private float price;
 
-    public Stock (int inNum , String inName, int inQuantity, float inPrice)
-    {
+    public Stock(int inNum, String inName, int inQuantity, float inPrice) {
         stockNum = inNum;
         name = inName;
         quantity = inQuantity;
         price = inPrice;
     }
 
-    public int getStockNum() {return stockNum;}
+    public int getStockNum() {
+        return stockNum;
+    }
 
-    public String getName() {return name;}
+    public String getName() {
+        return name;
+    }
 
-    public int getQuantity() {return quantity;}
+    public int getQuantity() {
+        return quantity;
+    }
 
-    public float getPrice() {return price;}
+    public float getPrice() {
+        return price;
+    }
 
 
-    public void setStockNum(int inNum) {stockNum = inNum;}
+    public void setStockNum(int inNum) {
+        stockNum = inNum;
+    }
 
-    public void setName(String inName) {name = inName;}
+    public void setName(String inName) {
+        name = inName;
+    }
 
-    public void setQuantity(int inQuantity) {quantity = inQuantity;}
+    public void setQuantity(int inQuantity) {
+        quantity = inQuantity;
+    }
 
-    public void setPrice(float inPrice) {price = inPrice;}
+    public void setPrice(float inPrice) {
+        price = inPrice;
+    }
 }
