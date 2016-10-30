@@ -11,4 +11,13 @@ public class Print {
         else
             System.out.println("" + obj);
     }
+
+    /*private void printToFile(File aFile, String output) throws IOException
+    {
+        FileWriter fw = new FileWriter(aFile, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(output);
+        bw.close();
+        fw.close();
+    }*/
 }
