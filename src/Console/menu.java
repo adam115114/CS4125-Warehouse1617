@@ -20,7 +20,7 @@ public class menu {
                 x = Integer.parseInt(input);
                 switch (x) {
                     case 1:
-                        Print.print("Will implement a menu, methods are done", true);
+                        StockMenu c = new StockMenu();
                         checker = false;
                         break;
                     case 2:
