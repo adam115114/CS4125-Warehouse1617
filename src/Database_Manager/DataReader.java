@@ -11,13 +11,17 @@ import java.util.Scanner;
 /**
  * Created by David Sims on 30/10/2016.
  */
-public class DataReader  implements Dinter{
+public class DataReader implements Dinter{
 
     public ArrayList<Employee> employee = new ArrayList<>();
     public ArrayList<Stock> stock = new ArrayList<>();
 
-    public void DataReader() throws IOException
+    public DataReader() throws IOException {
+        read();
+    }
+    public void read() throws IOException
     {
+        System.out.print("FSGS");
         Employee a;
         Stock b;
         String elements[];
