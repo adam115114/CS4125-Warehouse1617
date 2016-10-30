@@ -219,8 +219,10 @@ public class WarehouseProject
     private void Menu()
     {
         Scanner in = new Scanner(System.in);
+        String input;
         String menuMessage = "Choose an option(please enter in the format of 1-3):\n1: Update Stock\n2: Sales\n3: Logout";
         print(menuMessage, true);
+
 
     }
 }
