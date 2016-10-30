@@ -1,41 +1,51 @@
 package objects;
 
 
-
-public class Employee
-{
+public class Employee {
     private int empno;
     private boolean check;
     private String name, password;
-    public Employee(int inNum, String inName, String inPassword)
-    {
+
+    public Employee(int inNum, String inName, String inPassword) {
         empno = inNum;
         name = inName;
         password = inPassword;
     }
-    public String getName() {return name;}
 
-    public String getPassword() {return password;}
+    public String getName() {
+        return name;
+    }
 
-    public int getEmpno() {return empno;}
+    public String getPassword() {
+        return password;
+    }
 
-    public void setName(String inName){ name = inName; }
+    public int getEmpno() {
+        return empno;
+    }
 
-    public void setPassword(String inPassword){password = inPassword; }
+    public void setName(String inName) {
+        name = inName;
+    }
 
-    public void setEmpno(int inNum){ empno = inNum; }
+    public void setPassword(String inPassword) {
+        password = inPassword;
+    }
 
-    public boolean passwordCheck(String inPassword)
-    {
+    public void setEmpno(int inNum) {
+        empno = inNum;
+    }
+
+    public boolean passwordCheck(String inPassword) {
         check = false;
-        if(inPassword.equals(password))
+        if (inPassword.equals(password))
             return !check;
         return check;
     }
-    public boolean empnoCheck(int inNum)
-    {
-         check = false;
-        if(inNum == empno)
+
+    public boolean empnoCheck(int inNum) {
+        check = false;
+        if (inNum == empno)
             return !check;
         return check;
     }

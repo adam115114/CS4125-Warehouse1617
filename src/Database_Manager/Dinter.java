@@ -7,6 +7,7 @@ import java.io.IOException;
  */
 public interface Dinter {
     void DataReader() throws IOException;
+
     void update();
 
 }

@@ -5,10 +5,10 @@ package Console;
  */
 public class Print {
 
-    public static void print(Object obj, boolean check){
+    public static void print(Object obj, boolean check) {
         if (!check)
-            System.out.print(""+ obj);
+            System.out.print("" + obj);
         else
-            System.out.println(""+ obj);
+            System.out.println("" + obj);
     }
 }
