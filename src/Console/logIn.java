@@ -19,8 +19,6 @@ public class logIn {
             String outMessage = "Please enter your employee ID please(Or type exit to leave): ";
             Print.print(outMessage, true);
             input = in.nextLine();
-            if (input.equals("exit"))
-                System.exit(0);
             if (!input.matches(pattern))
                 Print.print("incorrect input or ID not recognised. Please try again", true);
             else {
