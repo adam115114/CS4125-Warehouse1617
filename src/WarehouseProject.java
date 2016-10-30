@@ -10,11 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.concurrent.SynchronousQueue;
-import java.util.jar.Pack200;
 
 public class WarehouseProject
 {
+
     public ArrayList<Employee> employee = new ArrayList<>();
     public ArrayList<Stock> stock = new ArrayList<>();
     private int userID;
@@ -129,7 +128,7 @@ public class WarehouseProject
         return dateformat.format(currentDate);
     }
 
-    private Boolean printToFile(File aFile, String output) throws IOException
+    private void printToFile(File aFile, String output) throws IOException
     {
         FileWriter fw = new FileWriter(aFile, true);
         BufferedWriter bw = new BufferedWriter(fw);
@@ -161,7 +160,6 @@ public class WarehouseProject
             a = new Employee(Integer.parseInt(elements[0]), elements[1], elements[2]);
             employee.add(a);
         }
-
         elements = null;
         aLineFromFile = "";
         aFile = new File("res\\Stock.txt");
@@ -180,8 +178,7 @@ public class WarehouseProject
     public static void main(String[] args) throws IOException {
         WarehouseProject a = new WarehouseProject();
     }
-    private void login()
-    {
+    private void login() throws IOException {
         String input;
         String pattern = "[0-9]+";
         int id = 0;
@@ -216,12 +213,32 @@ public class WarehouseProject
             }
         }
     }
-    private void Menu()
-    {
+    private void Menu() throws IOException {
+        String input, pattern = "[1-3]";
+        int x;
+        boolean checker = true;
         Scanner in = new Scanner(System.in);
-        String input;
-        String menuMessage = "Choose an option(please enter in the format of 1-3):\n1: Update Stock\n2: Sales\n3: Logout";
-        print(menuMessage, true);
+        while(checker) {
+            String menuMessage = "Choose an option(please enter in the format of 1-3):\n1: Update Stock\n2: Sales\n3: Logout";
+            print(menuMessage, true);
+            input = in.nextLine();
+            if (input.matches(pattern)) {
+                x = Integer.parseInt(input);
+                switch (x){
+                    case 1: print("Will implement a menu, methods are done", true);
+                        checker = false;
+                        break;
+                    case 2: doSale();
+                        checker = false;
+                        break;
+                    case 3: login();
+                        checker = false;
+                        break;
+                }
+            } else
+                print("incorrect input", true);
+        }
+
 
 
     }
