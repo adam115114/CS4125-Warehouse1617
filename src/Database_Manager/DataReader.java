@@ -21,7 +21,6 @@ public class DataReader implements Dinter{
     }
     public void read() throws IOException
     {
-        System.out.print("FSGS");
         Employee a;
         Stock b;
         String elements[];
