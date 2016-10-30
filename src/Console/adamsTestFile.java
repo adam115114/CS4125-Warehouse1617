@@ -1,0 +1,95 @@
+package Console;
+
+import Database_Manager.DataReader;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import javax.swing.*;
+
+/**
+ * Created by adam on 30/10/2016.
+ */
+public class adamsTestFile extends JFrame implements ActionListener {
+
+    private JLabel username, password;
+    private JButton logIn, Cancel;
+    private JTextField nameInput, passwordInput;
+    private JPanel panel;
+
+    public adamsTestFile() {
+        makeWindow();
+
+    }
+
+    public void makeWindow() {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel = new JPanel();
+        username = new JLabel("Username:");
+        password = new JLabel("Password:");
+        nameInput = new JTextField(20);
+        passwordInput = new JTextField(20);
+        logIn = new JButton("LogIn");
+        logIn.addActionListener(this);
+        Cancel = new JButton("Cancel");
+        Cancel.addActionListener(this);
+
+
+        panel.add(username);
+        panel.add(nameInput);
+        panel.add(password);
+        panel.add(passwordInput);
+        panel.add(logIn);
+        panel.add(Cancel);
+        this.getContentPane().add(BorderLayout.CENTER, panel);
+        this.setSize(300, 200);
+        this.setVisible(true);
+    }
+
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == logIn) {
+            try {
+                CheckLogIn();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        } else if (e.getSource() == Cancel)
+            System.exit(1);
+    }
+
+    public void CheckLogIn() throws IOException {
+        DataReader e = new DataReader();
+        String input;
+        String pattern = "[0-9]+";
+        int id = 0;
+        boolean checker = true;
+        String name, password;
+        name = nameInput.getText();
+        password = passwordInput.getText();
+        nameInput.setText("");
+        passwordInput.setText("");
+        if (!name.matches(pattern))
+            JOptionPane.showMessageDialog(null,"incorrect input or ID not recognised. Please try again");
+        else {
+            id = Integer.parseInt(name);
+            for (int x = 0; x < e.employee.size() && checker; x++) {
+                if (id == e.employee.get(x).getEmpno() && password.equals(e.employee.get(x).getPassword())) {
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Login was Successful");
+                    checker = false;
+                    menu a = new menu();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Login was not successful. Please start again");
+                    checker = false;
+                    this.setVisible(false);
+                    adamsTestFile b = new adamsTestFile();
+                }
+            }
+        }
+    }
+    public static void main(String [] args){
+        adamsTestFile a = new adamsTestFile();
+    }
+}
