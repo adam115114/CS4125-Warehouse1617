@@ -8,17 +8,15 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.*;
 
-/**
- * Created by adam on 30/10/2016.
- */
-public class adamsTestFile extends JFrame implements ActionListener {
+
+public class LoginPage extends JFrame implements ActionListener {
 
     private JLabel username, password;
     private JButton logIn, Cancel;
     private JTextField nameInput, passwordInput;
     private JPanel panel;
 
-    public adamsTestFile() {
+    public LoginPage() {
         makeWindow();
 
     }
@@ -84,12 +82,12 @@ public class adamsTestFile extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Login was not successful. Please start again");
                     checker = false;
                     this.setVisible(false);
-                    adamsTestFile b = new adamsTestFile();
+                    LoginPage b = new LoginPage();
                 }
             }
         }
     }
     public static void main(String [] args){
-        adamsTestFile a = new adamsTestFile();
+        LoginPage a = new LoginPage();
     }
 }
