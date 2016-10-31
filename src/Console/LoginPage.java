@@ -9,7 +9,7 @@ import java.io.IOException;
 import javax.swing.*;
 
 
-public class LoginPage extends JFrame implements ActionListener {
+public class LoginPage extends JFrame implements ActionListener { // This is Adam's work and has been updated to GUI's already
 
     private JLabel username, password;
     private JButton logIn, Cancel;
