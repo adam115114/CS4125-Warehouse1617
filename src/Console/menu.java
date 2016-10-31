@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * Created by adam on 30/10/2016.
  */
-public class menu { // Adam's work Still in first iteration and will be updated to GUI's
+public class menu implements Cinter{ // Adam's work Still in first iteration and will be updated to GUI's
     public menu() throws IOException {
         String input, pattern = "[1-3]";
         int x;
@@ -37,7 +37,8 @@ public class menu { // Adam's work Still in first iteration and will be updated 
             } else
                 Print.print("incorrect input", true);
         }
-
+    }
+    public void makeWindow() {
 
     }
 }
