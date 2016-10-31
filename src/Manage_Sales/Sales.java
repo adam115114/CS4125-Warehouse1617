@@ -24,30 +24,36 @@ public class Sales implements Sinter {
         String[] temp;
         int num = 0, quan = 0;
         float price = 0.00f;
-        Boolean sale = false, find = false;
+        Boolean sale = false, find,q,n;
         while (!sale) {
             p.print("Please enter sale details(ProductCode Quantity):", true);
             input = in.nextLine();
-            p.print("y", true);
-            if (input != "end") {
+            find = false;
+            q = false;
+            n = false;
+            if (!input.equals("end")) {
                 temp = input.split(" ");
                 num = Integer.parseInt(temp[0]);
                 quan = Integer.parseInt(temp[1]);
-                for (int i = 0; i < e.stock.size() && find; i++) {
+                for (int i = 0; i < e.stock.size() && !find; i++) {
                     p.print("y", true);
                     if (e.stock.get(i).getStockNum() == num) {
+                        n = true;
                         if (e.stock.get(i).getQuantity() >= quan) {
+                            q = true;
                             find = true;
                             p.print("x", true);
                             name = e.stock.get(i).getName();
                             price = e.stock.get(i).getPrice();
                             Stock s = new Stock(num, name, quan, price);
                             cart.add(s);
-                        } else
-                            p.print("Error: not enough quantity. Only" + e.stock.get(i).getQuantity(), true);
-                    } else
-                        p.print("Error:Product not valid", true);
+                        }
+                    }
                 }
+                if (!q)
+                    p.print("Error: not enough quantity. Only", true);
+                else if(!n)
+                    p.print("Error:Product not valid", true);
             } else {
                 sale = true;
                 invoice();
@@ -62,10 +68,14 @@ public class Sales implements Sinter {
     public void invoice() throws IOException {
         String out = "";
         float total = 0;
+        System.out.print("ghj");
+        System.out.print(cart.size());
         File invoices = new File("res\\invoices.txt");
         if (!invoices.exists())
             invoices.createNewFile();
         for(Stock s : cart) {
+            System.out.print(cart.size());
+            System.out.print(s.getName());
             out += s.getName() + "\t" + s.getQuantity() + (s.getQuantity() * s.getPrice());
             total += (s.getQuantity() * s.getPrice());
         }
