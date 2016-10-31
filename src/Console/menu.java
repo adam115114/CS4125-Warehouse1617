@@ -32,7 +32,7 @@ public class menu {
                         checker = false;
                         break;
                     case 3:
-                        logIn b = new logIn();
+                        LoginPage b = new LoginPage();
                         checker = false;
                         break;
                 }
