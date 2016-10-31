@@ -61,7 +61,8 @@ public class LoginPage extends JFrame implements ActionListener { // This is Ada
     }
 
     public void CheckLogIn() throws IOException {
-        DataReader e = new DataReader();
+        char t = 'r';
+        DataReader e = new DataReader(t);
         String input;
         String pattern = "[0-9]+";
         int id = 0;

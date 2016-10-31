@@ -13,8 +13,11 @@ public class DataReader implements Dinter{
     public ArrayList<Employee> employee = new ArrayList<>();
     public ArrayList<Stock> stock = new ArrayList<>();
 
-    public DataReader() throws IOException {
-        read();
+    public DataReader(char x) throws IOException {
+        if(x == 'r')
+            read();
+        else if(x == 'u')
+            update();
     }
     public void read() throws IOException
     {

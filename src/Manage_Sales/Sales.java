@@ -17,7 +17,8 @@ public class Sales implements Sinter {
     ArrayList<Stock> cart = new ArrayList<>();
 
     public void sale() throws IOException {
-        DataReader e = new DataReader();
+        char t = 'r';
+        DataReader e = new DataReader(t);
         Scanner in = new Scanner(System.in);
         String input, name = "";
         String[] temp;
@@ -71,15 +72,15 @@ public class Sales implements Sinter {
         if (!invoices.exists())
             invoices.createNewFile();
         for(Stock x : cart) {
-            out += x.getName() + "\t" + x.getQuantity() + "\t" + (x.getQuantity() * x.getPrice()) + "\n";
+            out += x.getName() + "\t" + x.getQuantity() + "\t\t\t" + (x.getQuantity() * x.getPrice()) + "\n";
             total += (x.getQuantity() * x.getPrice());
         }
         p.printToFile(invoices, "name," + total + "," + currentDate() + "\n");
-        String rec = "res\\" + "name" + currentDate();
-        File receipt = new File("rec");
+        String rec = "res\\Receipts\\" + "name";
+        File receipt = new File(rec);
         receipt.createNewFile();
         p.print("Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal:" + total, true);
-        p.printToFile(receipt, "Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal" + total);
+        p.printToFile(receipt, "Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal:" + total + "\n");
     }
 
     public void cancel() {
@@ -87,7 +88,7 @@ public class Sales implements Sinter {
     }
 
     private String currentDate() {
-        DateFormat dateformat = new SimpleDateFormat("HH:mm:ss_dd/MM/yyyy");
+        DateFormat dateformat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         Date currentDate = new Date();
         return dateformat.format(currentDate);
     }
