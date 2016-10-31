@@ -9,5 +9,4 @@ public interface Dinter {
     void read() throws IOException;
 
     void update();
-
 }
