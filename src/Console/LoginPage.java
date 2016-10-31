@@ -86,7 +86,7 @@ public class LoginPage extends JFrame implements ActionListener, Cinter { // Thi
                     lMessage.setText("Login was Successful, please wait to be redirected");
                     checker = false;
                     this.setVisible(false);
-                    menu a = new menu();
+                    menu menu = new menu();
                 }
                 else if(x == e.employee.size() - 1){
                     lMessage.setText("ID was not found. Please try again");
