@@ -59,7 +59,7 @@ public class Stock_Manager implements Sinter
         int stockID = 0;
         boolean converted = false;
 
-        print("View all stock: ", false);
+        print("View all stock(Y/N): ", false);
         input = System.console().readLine().toLowerCase();
         if (input.contains("y"))
         {
