@@ -13,7 +13,8 @@ public class LoginPage extends JFrame implements ActionListener {
 
     private JLabel username, password;
     private JButton logIn, Cancel;
-    private JTextField nameInput, passwordInput;
+    private JTextField nameInput;
+    private JPasswordField passwordInput;
     private JPanel panel;
 
     public LoginPage() {
@@ -27,7 +28,8 @@ public class LoginPage extends JFrame implements ActionListener {
         username = new JLabel("Username:");
         password = new JLabel("Password:");
         nameInput = new JTextField(20);
-        passwordInput = new JTextField(20);
+        passwordInput = new JPasswordField(20);
+        passwordInput.setEchoChar('*');
         logIn = new JButton("LogIn");
         logIn.addActionListener(this);
         Cancel = new JButton("Cancel");
@@ -40,6 +42,7 @@ public class LoginPage extends JFrame implements ActionListener {
         panel.add(passwordInput);
         panel.add(logIn);
         panel.add(Cancel);
+        this.setLocationRelativeTo(null);
         this.getContentPane().add(BorderLayout.CENTER, panel);
         this.setSize(300, 200);
         this.setVisible(true);
@@ -65,7 +68,8 @@ public class LoginPage extends JFrame implements ActionListener {
         boolean checker = true;
         String name, password;
         name = nameInput.getText();
-        password = passwordInput.getText();
+        char[] pass = passwordInput.getPassword();
+        password = new String(pass);
         nameInput.setText("");
         passwordInput.setText("");
         if (!name.matches(pattern))
