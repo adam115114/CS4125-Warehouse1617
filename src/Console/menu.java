@@ -54,7 +54,12 @@ public class menu extends JFrame implements ActionListener, Cinter {// Adam's wo
         }
         if (e.getSource() == option2){
             this.setVisible(false);
-            Sales b = new Sales();
+            Sales b = null;
+            try {
+                b = new Sales();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             try {
                 b.sale();
             } catch (IOException e1) {
