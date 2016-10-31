@@ -3,9 +3,9 @@ package Console;
 import java.util.Scanner;
 
 /**
-         * Created by adam on 30/10/2016.
- */
-public class StockMenu {
+ * Created by adam on 30/10/2016.
+ * */
+public class StockMenu implements Cinter {
     public StockMenu() { // Adam's work Still in first iteration and will be updated to GUI's
         String input, pattern = "[1-2]", outputMessage = "Choose an option(please enter in the format of 1-2)\n1. View Stock\n2. Update Stock";
         boolean checker = true;
@@ -30,5 +30,8 @@ public class StockMenu {
                 }
             }
         }
+    }
+    public void makeWindow() {
+
     }
 }
