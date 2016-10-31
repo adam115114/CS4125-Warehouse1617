@@ -76,18 +76,19 @@ public class LoginPage extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null,"incorrect input or ID not recognised. Please try again");
         else {
             id = Integer.parseInt(name);
-            for (int x = 0; x < e.employee.size() && checker; x++) {
+            for (int x = 0; x < e.employee.size(); x++) {
                 if (id == e.employee.get(x).getEmpno() && password.equals(e.employee.get(x).getPassword())) {
                     this.setVisible(false);
                     JOptionPane.showMessageDialog(null, "Login was Successful");
                     checker = false;
                     menu a = new menu();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Login was not successful. Please start again");
-                    checker = false;
-                    this.setVisible(false);
-                    LoginPage b = new LoginPage();
                 }
+                if (x == e.employee.size() - 1) checker = false;
+            }
+            if (!checker){
+                JOptionPane.showMessageDialog(null, "Login was not successful. Please start again");
+                this.setVisible(false);
+                LoginPage b = new LoginPage();
             }
         }
     }
