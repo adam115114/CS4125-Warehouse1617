@@ -32,7 +32,6 @@ public class DataReader implements Dinter{
         File aFile = new File("res\\employee.txt");
         if (!aFile.exists()) aFile.createNewFile();
         Scanner in = new Scanner(aFile);
-        System.out.println("read");
         while (in.hasNext()) {
             aLineFromFile = in.nextLine();
             elements = aLineFromFile.split(",");
@@ -58,7 +57,6 @@ public class DataReader implements Dinter{
         File stockf = new File("res\\Stock.txt");
         System.out.println(stock.size());
         for (Stock s : stock) {
-            p.print("update1", true);
             p.printToFile(stockf, "" + s.getStockNum() + "," + s.getName() + "," + s.getQuantity() + "," + s.getPrice(), false);
         }
 /*

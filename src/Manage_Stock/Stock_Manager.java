@@ -18,7 +18,7 @@ public class Stock_Manager implements Sinter
 
     public Stock_Manager() throws IOException
     {
-        dr = new DataReader('r');
+        dr = new DataReader();
         stock = dr.stock;
     }
 
