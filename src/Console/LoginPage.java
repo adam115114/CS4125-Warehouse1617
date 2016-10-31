@@ -76,7 +76,7 @@ public class LoginPage extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null,"incorrect input or ID not recognised. Please try again");
         else {
             id = Integer.parseInt(name);
-            for (int x = 0; x < e.employee.size(); x++) {
+            for (int x = 0; x < e.employee.size() || checker; x++) {
                 if (id == e.employee.get(x).getEmpno() && password.equals(e.employee.get(x).getPassword())) {
                     this.setVisible(false);
                     JOptionPane.showMessageDialog(null, "Login was Successful");
