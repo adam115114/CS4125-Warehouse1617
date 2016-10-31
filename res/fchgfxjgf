@@ -49,13 +49,13 @@
                 stockID = Integer.parseInt(input);
                 converted = true;
             } catch (NumberFormatException e)
-            {
-                e.printStackTrace();
-            }
-            if (converted) for (Stock s : stock)
-                if (s.getStockNum() == stockID) print("Name: " + s.getName() + ", Price: " + s.getPrice(), true);
-        }
-    }
+                 {
+                     e.printStackTrace();
+                 }
+                 if (converted) for (Stock s : stock)
+                     if (s.getStockNum() == stockID) print("Name: " + s.getName() + ", Price: " + s.getPrice(), true);
+             }
+         }
 
     public void doSale() throws IOException
     {

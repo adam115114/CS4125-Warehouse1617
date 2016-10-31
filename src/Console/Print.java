@@ -15,9 +15,9 @@ public class Print {
             System.out.println("" + obj);
     }
 
-    public void printToFile(File aFile, String output) throws IOException // This is Sims's file print method
+    public void printToFile(File aFile, String output, Boolean append) throws IOException // This is Sims's file print method
     {
-        FileWriter fw = new FileWriter(aFile, true);
+        FileWriter fw = new FileWriter(aFile, append);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(output);
         bw.close();

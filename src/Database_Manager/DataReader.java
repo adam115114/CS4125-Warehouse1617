@@ -32,6 +32,7 @@ public class DataReader implements Dinter{
         File aFile = new File("res\\employee.txt");
         if (!aFile.exists()) aFile.createNewFile();
         Scanner in = new Scanner(aFile);
+        System.out.println("read");
         while (in.hasNext()) {
             aLineFromFile = in.nextLine();
             elements = aLineFromFile.split(",");
@@ -52,28 +53,24 @@ public class DataReader implements Dinter{
         }
     }
 
-    public void update() /* where the text file will be updated when the arraylists are edited*/{
-        try
-        {
-            PrintWriter pwStock = new PrintWriter("res\\Stock.txt", "UTF-8");
-            for (Stock s : stock)
-                pwStock.println(s.getStockNum() + "," + s.getName() + "," + s.getQuantity() + "," + String.format("%.2f", s.getPrice()));
-            pwStock.close();
-        } catch (Exception e)
-        {
-            JOptionPane.showMessageDialog(null, "Stock.txt could not be found.", "An Error has occurred.", JOptionPane.ERROR_MESSAGE);
+    public void update() throws IOException /* where the text file will be updated when the arraylists are edited*/{
+        Print p = new Print();
+        File stockf = new File("res\\Stock.txt");
+        System.out.println(stock.size());
+        for (Stock s : stock) {
+            p.print("update1", true);
+            p.printToFile(stockf, "" + s.getStockNum() + "," + s.getName() + "," + s.getQuantity() + "," + s.getPrice(), false);
         }
-
+/*
         try
         {
-            PrintWriter pwEmploy = new PrintWriter("res\\employee.txt", "UTF-8");
+            File empf = new File("res\\employee.text");
             for (Employee e : employee)
-                pwEmploy.println(e.getEmpno() + "," + e.getName() + "," + e.getPassword());
-            pwEmploy.close();
+                p.printToFile(empf, e.getEmpno() + "," + e.getName() + "," + e.getPassword());
         } catch (Exception e)
         {
             JOptionPane.showMessageDialog(null, "employee.txt could not be found.", "An Error has occurred.", JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }
 
 }

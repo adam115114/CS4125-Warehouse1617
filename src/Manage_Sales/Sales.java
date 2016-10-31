@@ -15,13 +15,16 @@ import objects.Stock;
 public class Sales implements Sinter {
     Print p = new Print();
     ArrayList<Stock> cart = new ArrayList<>();
+    DataReader e = new DataReader();
+
+    public Sales() throws IOException {
+    }
 
     public void sale() throws IOException {
-        DataReader e = new DataReader();
         Scanner in = new Scanner(System.in);
         String input, name = "";
         String[] temp;
-        int num = 0, quan = 0;
+        int num = 0, quan = 0, no = 0;
         float price = 0.00f;
         Boolean sale = false, find,q,n;
         while (!sale) {
@@ -43,8 +46,8 @@ public class Sales implements Sinter {
                             name = e.stock.get(i).getName();
                             price = e.stock.get(i).getPrice();
                             Stock s = new Stock(num, name, quan, price);
-                            cart.add(s);
-                            System.out.print(cart.size());
+                            no = e.stock.get(i).getQuantity()- quan;
+                            e.stock.get(i).setQuantity(no) ;
                         }
                     }
                 }
@@ -59,10 +62,6 @@ public class Sales implements Sinter {
         }
     }
 
-    public void buy() {
-
-    }
-
     public void invoice() throws IOException {
         String out = "";
         float total = 0.0f;
@@ -71,15 +70,16 @@ public class Sales implements Sinter {
         if (!invoices.exists())
             invoices.createNewFile();
         for(Stock x : cart) {
-            out += x.getName() + "\t" + x.getQuantity() + "\t" + (x.getQuantity() * x.getPrice()) + "\n";
+            out += x.getName() + "\t" + x.getQuantity() + "\t\t\t" + (x.getQuantity() * x.getPrice()) + "\n";
             total += (x.getQuantity() * x.getPrice());
         }
-        p.printToFile(invoices, "name," + total + "," + currentDate() + "\n");
-        String rec = "res\\" + "name" + currentDate();
-        File receipt = new File("rec");
+        p.printToFile(invoices, "name," + total + "," + currentDate() + "\n", true);
+        String rec = "res\\Receipts\\" + "name";
+        File receipt = new File(rec);
         receipt.createNewFile();
         p.print("Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal:" + total, true);
-        p.printToFile(receipt, "Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal" + total);
+        p.printToFile(receipt, "Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal:" + total + "\n", true);
+        e.update();
     }
 
     public void cancel() {
@@ -87,9 +87,8 @@ public class Sales implements Sinter {
     }
 
     private String currentDate() {
-        DateFormat dateformat = new SimpleDateFormat("HH:mm:ss_dd/MM/yyyy");
+        DateFormat dateformat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         Date currentDate = new Date();
         return dateformat.format(currentDate);
     }
-
 }
