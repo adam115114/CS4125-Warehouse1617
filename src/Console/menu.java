@@ -23,13 +23,11 @@ public class menu {
                 switch (x) {
                     case 1:
                         StockMenu c = new StockMenu();
-                        checker = false;
                         break;
                     case 2:
                         Print.print("doSale();", true);
                         Sales s = new Sales();
                         s.sale();
-                        checker = false;
                         break;
                     case 3:
                         LoginPage b = new LoginPage();

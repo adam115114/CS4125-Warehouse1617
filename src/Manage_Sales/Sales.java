@@ -14,10 +14,9 @@ import objects.Stock;
 
 public class Sales implements Sinter {
     Print p = new Print();
-    public ArrayList<Stock> cart = new ArrayList<>();
+    ArrayList<Stock> cart = new ArrayList<>();
 
     public void sale() throws IOException {
-        ArrayList<Stock> cart = new ArrayList<>();
         DataReader e = new DataReader();
         Scanner in = new Scanner(System.in);
         String input, name = "";
@@ -36,22 +35,21 @@ public class Sales implements Sinter {
                 num = Integer.parseInt(temp[0]);
                 quan = Integer.parseInt(temp[1]);
                 for (int i = 0; i < e.stock.size() && !find; i++) {
-                    p.print("y", true);
                     if (e.stock.get(i).getStockNum() == num) {
                         n = true;
                         if (e.stock.get(i).getQuantity() >= quan) {
                             q = true;
                             find = true;
-                            p.print("x", true);
                             name = e.stock.get(i).getName();
                             price = e.stock.get(i).getPrice();
                             Stock s = new Stock(num, name, quan, price);
                             cart.add(s);
+                            System.out.print(cart.size());
                         }
                     }
                 }
                 if (!q)
-                    p.print("Error: not enough quantity. Only", true);
+                    p.print("Error: not enough quantity", true);
                 else if(!n)
                     p.print("Error:Product not valid", true);
             } else {
@@ -67,24 +65,21 @@ public class Sales implements Sinter {
 
     public void invoice() throws IOException {
         String out = "";
-        float total = 0;
-        System.out.print("ghj");
-        System.out.print(cart.size());
+        float total = 0.0f;
         File invoices = new File("res\\invoices.txt");
+        out +=  "Product\tQuantity\tPrice\n";
         if (!invoices.exists())
             invoices.createNewFile();
-        for(Stock s : cart) {
-            System.out.print(cart.size());
-            System.out.print(s.getName());
-            out += s.getName() + "\t" + s.getQuantity() + (s.getQuantity() * s.getPrice());
-            total += (s.getQuantity() * s.getPrice());
+        for(Stock x : cart) {
+            out += x.getName() + "\t" + x.getQuantity() + "\t" + (x.getQuantity() * x.getPrice()) + "\n";
+            total += (x.getQuantity() * x.getPrice());
         }
-        p.printToFile(invoices, /*userID +*/"," + total + "," + currentDate() + "\n");
-        String rec = "res\\Receipts\\" + "zxcv" ;
+        p.printToFile(invoices, "name," + total + "," + currentDate() + "\n");
+        String rec = "res\\" + "name" + currentDate();
         File receipt = new File("rec");
         receipt.createNewFile();
-        p.print("Sale Invoice\t" + currentDate() + "\n" + out + "\n" + total, true);
-        p.printToFile(receipt, "Sale Invoice\t" + currentDate() + "\n" + out + "\n" + total);
+        p.print("Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal:" + total, true);
+        p.printToFile(receipt, "Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal" + total);
     }
 
     public void cancel() {
@@ -92,7 +87,7 @@ public class Sales implements Sinter {
     }
 
     private String currentDate() {
-        DateFormat dateformat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        DateFormat dateformat = new SimpleDateFormat("HH:mm:ss_dd/MM/yyyy");
         Date currentDate = new Date();
         return dateformat.format(currentDate);
     }
