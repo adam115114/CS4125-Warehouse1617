@@ -60,16 +60,13 @@ public class LoginPage extends JFrame implements ActionListener, Cinter { // Thi
                 CheckLogIn();
             } catch (IOException e1) {
                 e1.printStackTrace();
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
             }
         } else if (e.getSource() == Cancel)
             System.exit(1);
     }
 
     public void CheckLogIn() throws IOException {
-        char t = 'r';
-        DataReader e = new DataReader(t);
+        DataReader e = new DataReader();
         String input;
         String pattern = "[0-9]+";
         int id = 0;

@@ -10,8 +10,8 @@ public class StockMenu implements Cinter {
         String input, pattern = "[1-2]", outputMessage = "Choose an option(please enter in the format of 1-2)\n1. View Stock\n2. Update Stock";
         boolean checker = true;
         int option;
-        while(checker) {
-            Print.print(outputMessage, true);
+            while(checker) {
+                Print.print(outputMessage, true);
             Scanner in = new Scanner(System.in);
             input = in.nextLine();
             if (!input.matches(pattern))
