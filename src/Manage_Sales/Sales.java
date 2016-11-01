@@ -46,6 +46,7 @@ public class Sales implements Sinter {
                             name = e.stock.get(i).getName();
                             price = e.stock.get(i).getPrice();
                             Stock s = new Stock(num, name, quan, price);
+                            cart.add(s);
                             no = e.stock.get(i).getQuantity()- quan;
                             e.stock.get(i).setQuantity(no) ;
                         }
@@ -63,6 +64,7 @@ public class Sales implements Sinter {
     }
 
     public void invoice() throws IOException {
+        p.print(cart.size(),true);
         String out = "";
         float total = 0.0f;
         File invoices = new File("res\\invoices.txt");
@@ -80,6 +82,7 @@ public class Sales implements Sinter {
         p.print("Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal:" + total, true);
         p.printToFile(receipt, "Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal:" + total + "\n", true);
         e.update();
+        menu menu = new menu();
     }
 
     public void cancel() {

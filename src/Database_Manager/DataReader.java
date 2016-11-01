@@ -55,7 +55,6 @@ public class DataReader implements Dinter{
     public void update() throws IOException /* where the text file will be updated when the arraylists are edited*/{
         Print p = new Print();
         File stockf = new File("res\\Stock.txt");
-        System.out.println(stock.size());
         for (Stock s : stock) {
             p.printToFile(stockf, "" + s.getStockNum() + "," + s.getName() + "," + s.getQuantity() + "," + s.getPrice(), false);
         }

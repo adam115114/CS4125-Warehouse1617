@@ -1,9 +1,12 @@
 package Console;
 
+import Manage_Stock.Stock_Manager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -16,7 +19,7 @@ public class StockMenu implements Cinter {
     JPanel panel;
     JLabel lMessage;
 
-    public StockMenu() { // Adam's work Still in first iteration and will be updated to GUI's
+    public StockMenu() throws IOException { // Adam's work Still in first iteration and will be updated to GUI's
         String input, pattern = "[1-2]", outputMessage = "Choose an option(please enter in the format of 1-2)\n1. View Stock\n2. Update Stock";
         boolean checker = true;
         int option;
@@ -30,11 +33,13 @@ public class StockMenu implements Cinter {
                 option = Integer.parseInt(input);
                 switch (option) {
                     case 1:
-                        Print.print("view stock", true);
+                        Stock_Manager s = new Stock_Manager();
+                        s.checkStock();
                         checker = false;
                         break;
                     case 2:
-                        Print.print("update stock", true);
+                        Stock_Manager v = new Stock_Manager();
+                        v.addStock();
                         checker = false;
                         break;
                 }
