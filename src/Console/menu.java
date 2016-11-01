@@ -56,6 +56,7 @@ public class menu extends JFrame implements ActionListener, Cinter {
             Sales b = null;
             try {
                 b = new Sales();
+                // tig here is where the sale GUI will go just write 'CartGUI c = new CartGUI();'
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
