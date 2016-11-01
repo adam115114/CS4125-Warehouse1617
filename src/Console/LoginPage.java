@@ -1,15 +1,15 @@
 package Console;
 
 import Database_Manager.DataReader;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import javax.swing.*;
 
 
-public class LoginPage extends JFrame implements ActionListener, Cinter { // This is Adam's work and has been updated to GUI's already
+public class LoginPage extends JFrame implements ActionListener, Cinter {
 
     private JLabel username, password, lMessage;
     private JButton logIn, Cancel;
@@ -89,8 +89,7 @@ public class LoginPage extends JFrame implements ActionListener, Cinter { // Thi
                     checker = false;
                     this.setVisible(false);
                     menu menu = new menu();
-                }
-                else if(x == e.employee.size() - 1){
+                } else if (x == e.employee.size() - 1) {
                     lMessage.setText("ID was not found. Please try again");
                     checker = false;
                 }
@@ -100,6 +99,5 @@ public class LoginPage extends JFrame implements ActionListener, Cinter { // Thi
                 checker = true;
             }
         }
-
     }
 }
