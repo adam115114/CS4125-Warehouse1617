@@ -1,5 +1,7 @@
 package Console;
 
+import Manage_Stock.Stock_Manager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -44,8 +46,18 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == viewS)
-            JOptionPane.showMessageDialog(null, "Veiw Stock was clicked");
+            try {
+                Stock_Manager v = new Stock_Manager();
+                v.checkStock();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         if (e.getSource() == updateS)
-            JOptionPane.showMessageDialog(null, "Update stock was clicked");
+            try {
+                Stock_Manager v = new Stock_Manager();
+                v.addStock();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
     }
 }
