@@ -1,10 +1,10 @@
 package Console;
 
 import Database_Manager.DataReader;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 import javax.swing.*;
 
@@ -16,7 +16,6 @@ public class LoginPage extends JFrame implements ActionListener, Cinter {
     private JTextField nameInput;
     private JPasswordField passwordInput;
     private JPanel panel, panel1;
-    public int Sims_Thing;
 
     public LoginPage() {
         this.setVisible(false);
@@ -82,14 +81,15 @@ public class LoginPage extends JFrame implements ActionListener, Cinter {
             lMessage.setText("incorrect input or ID not recognised.\nPlease try again");
         else {
             id = Integer.parseInt(name);
-            Sims_Thing = id;
             for (int x = 0; x < e.employee.size() || checker; x++) {
                 if (id == e.employee.get(x).getEmpno() && password.equals(e.employee.get(x).getPassword())) {
                     lMessage.setText("Login was Successful, please wait to be redirected");
                     checker = false;
                     this.setVisible(false);
                     menu menu = new menu();
-                } else if (x == e.employee.size() - 1) {
+                    e.idNum = id;
+                }
+                else if(x == e.employee.size() - 1){
                     lMessage.setText("ID was not found. Please try again");
                     checker = false;
                 }
@@ -99,5 +99,6 @@ public class LoginPage extends JFrame implements ActionListener, Cinter {
                 checker = true;
             }
         }
+
     }
 }

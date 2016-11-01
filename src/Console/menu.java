@@ -15,9 +15,9 @@ public class menu extends JFrame implements ActionListener, Cinter {
     JLabel lMessage;
     JButton option1, option2, option3;
     JPanel jPanel1;
+    public int id;
 
     public menu() throws IOException {
-
         jPanel1 = new JPanel();
         this.setSize(500, 500);
         lMessage = new JLabel("Welcome to the Main Menu", SwingConstants.CENTER);

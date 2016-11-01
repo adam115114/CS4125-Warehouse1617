@@ -16,11 +16,13 @@ public class Sales implements Sinter {
     Print p = new Print();
     ArrayList<Stock> cart = new ArrayList<>();
     DataReader e = new DataReader();
+    public int idNum;
 
     public Sales() throws IOException {
     }
 
     public void sale() throws IOException {
+        idNum = e.idNum;
         Scanner in = new Scanner(System.in);
         String input, name = "";
         String[] temp;
@@ -75,8 +77,8 @@ public class Sales implements Sinter {
             out += x.getName() + "\t" + x.getQuantity() + "\t\t\t" + (x.getQuantity() * x.getPrice()) + "\n";
             total += (x.getQuantity() * x.getPrice());
         }
-        p.printToFile(invoices, "name," + total + "," + currentDate() + "\n", true);
-        String rec = "res\\Receipts\\" + "name";
+        p.printToFile(invoices, "" + idNum + "," + total + "," + currentDate() + "\n", true);
+        String rec = "res\\Receipts\\" + "" + idNum;
         File receipt = new File(rec);
         receipt.createNewFile();
         p.print("Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal:" + total, true);
