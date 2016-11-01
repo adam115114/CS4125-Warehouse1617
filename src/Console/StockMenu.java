@@ -47,6 +47,7 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == viewS)
             try {
+                this.setVisible(false);
                 Stock_Manager v = new Stock_Manager();
                 v.checkStock();
             } catch (IOException e1) {
@@ -54,6 +55,7 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
             }
         if (e.getSource() == updateS)
             try {
+                this.setVisible(false);
                 Stock_Manager v = new Stock_Manager();
                 v.addStock();
             } catch (IOException e1) {
