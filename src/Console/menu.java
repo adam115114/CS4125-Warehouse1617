@@ -50,7 +50,11 @@ public class menu extends JFrame implements ActionListener, Cinter {// Adam's wo
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == option1){
             this.setVisible(false);
-            StockMenu a = new StockMenu();
+            try {
+                StockMenu a = new StockMenu();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         if (e.getSource() == option2){
             this.setVisible(false);

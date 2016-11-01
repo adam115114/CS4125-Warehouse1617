@@ -5,6 +5,7 @@ import objects.Stock;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static Console.Print.print;
 
@@ -27,9 +28,10 @@ public class Stock_Manager implements Sinter
         String input, temp[];
         int stockID = 0, quan = 0;
         boolean converted = false;
+        Scanner in = new Scanner(System.in);
 
         print("Please enter the stock update (<Stock ID> <Quantity Added>): ", false);
-        input = System.console().readLine();
+        input = in.nextLine();
         temp = input.split(" ");
         try
         {
@@ -59,13 +61,15 @@ public class Stock_Manager implements Sinter
         int stockID = 0;
         boolean converted = false;
 
+        Scanner in = new Scanner(System.in);
+
         print("View all stock(Y/N): ", false);
-        input = System.console().readLine().toLowerCase();
+        input = in.nextLine().toLowerCase();
         if (input.contains("y"))
         {
-            print("Stock ID\tStock Name\tPrice", true);
+            print("ID\tName\tPrice\tQuantity", true);
             for (Stock s : stock)
-                print(s.getStockNum() + "\t" + s.getName() + "\t" + s.getPrice(), true);
+                print(s.getStockNum() + "\t" + s.getName() + "\t" + s.getPrice() +"\t" + s.getQuantity(), true);
         } else
         {
             print("Which stock item would you like to view: ", false);
@@ -76,7 +80,7 @@ public class Stock_Manager implements Sinter
                 converted = true;
             } catch (NumberFormatException e) { e.printStackTrace(); }
             if (converted) for (Stock s : stock)
-                if (s.getStockNum() == stockID) print("Name: " + s.getName() + ", Price: " + s.getPrice(), true);
+                if (s.getStockNum() == stockID) print("Name: " + s.getName() + ", Price: " + s.getPrice() + "Quantity:" + s.getQuantity(), true);
         }
     }
 }
