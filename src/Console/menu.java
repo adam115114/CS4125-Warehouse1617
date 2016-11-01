@@ -16,9 +16,9 @@ public class menu extends JFrame implements ActionListener, Cinter {// Adam's wo
     JLabel lMessage;
     JButton option1, option2, option3;
     JPanel jPanel1;
+    public int id;
 
     public menu() throws IOException {
-
         jPanel1 = new JPanel();
         this.setSize(500,500);
         lMessage = new JLabel("Welcome to the Main Menu", SwingConstants.CENTER);
@@ -50,11 +50,7 @@ public class menu extends JFrame implements ActionListener, Cinter {// Adam's wo
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == option1){
             this.setVisible(false);
-            try {
-                StockMenu a = new StockMenu();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            StockMenu a = new StockMenu();
         }
         if (e.getSource() == option2){
             this.setVisible(false);

@@ -16,6 +16,7 @@ public class DataReader implements Dinter{
 
     public ArrayList<Employee> employee = new ArrayList<>();
     public ArrayList<Stock> stock = new ArrayList<>();
+    public int idNum;
 
     public DataReader() throws IOException {
         read();
