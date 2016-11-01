@@ -16,6 +16,7 @@ public class LoginPage extends JFrame implements ActionListener, Cinter { // Thi
     private JTextField nameInput;
     private JPasswordField passwordInput;
     private JPanel panel, panel1;
+    public int Sims_Thing;
 
     public LoginPage() {
         this.setVisible(false);
@@ -81,6 +82,7 @@ public class LoginPage extends JFrame implements ActionListener, Cinter { // Thi
             lMessage.setText("incorrect input or ID not recognised.\nPlease try again");
         else {
             id = Integer.parseInt(name);
+            Sims_Thing = id;
             for (int x = 0; x < e.employee.size() || checker; x++) {
                 if (id == e.employee.get(x).getEmpno() && password.equals(e.employee.get(x).getPassword())) {
                     lMessage.setText("Login was Successful, please wait to be redirected");
