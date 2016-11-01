@@ -8,4 +8,5 @@ import java.io.IOException;
 public interface Einter
 {
     void addEmployee() throws IOException;
+    void deleteEmployee() throws IOException;
 }

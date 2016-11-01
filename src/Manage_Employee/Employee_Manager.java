@@ -53,4 +53,31 @@ public class Employee_Manager implements Einter
             reader.employee = employee;
             reader.update();
         }
+        public void deleteEmployee() throws IOException
+        {
+            String input, tempArray[];
+            int empno = 0;
+            String empName = "",empPass = "";
+            boolean converted = false;
+
+            print("Please enter the I.D. , Name and Password of the Employee you want to delete (101 John Password): ", false);
+            input = System.console().readLine();
+            tempArray = input.split(" ");
+            try
+            {
+                empno = Integer.parseInt(tempArray[0]);
+                empName = (tempArray[1]);
+                empPass = (tempArray[2]);
+                converted = true;
+            } catch (NumberFormatException e)
+            {
+                e.printStackTrace();
+            }
+            employee.remove(empno);
+            employee.remove(empName);
+            employee.remove(empPass);
+
+            reader.employee = employee;
+            reader.update();
+        }
 }
