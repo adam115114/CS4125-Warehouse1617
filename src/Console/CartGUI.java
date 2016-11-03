@@ -32,13 +32,19 @@ public class CartGUI extends JFrame implements Cinter, ActionListener {
         gridBagCons.weightx = 0.5;
         gridBagCons.weighty = 0.5;
         stock = new JLabel("Please enter stock Item");
-        sName = new JTextField();
+        stock.setFont(new Font("", Font.PLAIN, 22));
+        sName = new JTextField(20);
         quantity = new JLabel("Enter Quantity");
-        quan = new JTextField();
+        quantity.setFont(new Font("", Font.PLAIN, 22));
+        quan = new JTextField(20);
         addToCart = new JButton("Add To Cart");
+        addToCart.setFont(new Font("", Font.PLAIN, 22));
         checkout = new JButton("Check Out");
+        checkout.setFont(new Font("", Font.PLAIN, 22));
         remove = new JButton("Remove Item from cart");
+        remove.setFont(new Font("", Font.PLAIN, 22));
         cancel = new JButton("Cancel");
+        cancel.setFont(new Font("", Font.PLAIN, 22));
         lMessage = new JLabel("");
         euro = new JLabel("euro: ");
         runningTotal = new JLabel("N/A");
@@ -102,6 +108,9 @@ public class CartGUI extends JFrame implements Cinter, ActionListener {
         this.add(panel);
         this.setResizable(false);
         this.setVisible(true);
+    }
+    public static void main(String [] args){
+        CartGUI a = new CartGUI();
     }
 
     public void actionPerformed(ActionEvent e) {
