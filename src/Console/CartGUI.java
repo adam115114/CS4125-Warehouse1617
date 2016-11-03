@@ -1,6 +1,7 @@
 package Console;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -13,7 +14,7 @@ public class CartGUI extends JFrame implements Cinter, ActionListener {
     private JTextField sName, quan;
     private JButton addToCart, checkout, remove, cancel;
     private JLabel lMessage, euro, runningTotal, stock, quantity;
-    private JPanel panel, cartPanel, messagePanel;
+    private JPanel panel;
     private JTextArea shoppinglist;
 
     public CartGUI() {
@@ -21,33 +22,86 @@ public class CartGUI extends JFrame implements Cinter, ActionListener {
     }
 
     public void makeWindow() {
-        shoppinglist = new JTextArea();
-        shoppinglist.setEditable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(200, 400);
-        panel = new JPanel();
-        sName = new JTextField();
-        quan = new JTextField();
+        this.setTitle("Cart");
+        this.setSize(800, 600);
+        panel = new JPanel(new GridBagLayout());
+        //Creating constaints and setting anchor and weight
+        GridBagConstraints gridBagCons = new GridBagConstraints();
+        gridBagCons.anchor = GridBagConstraints.FIRST_LINE_START;
+        gridBagCons.weightx = 0.5;
+        gridBagCons.weighty = 0.5;
         stock = new JLabel("Please enter stock Item");
+        sName = new JTextField();
         quantity = new JLabel("Enter Quantity");
-        lMessage = new JLabel();
-        euro = new JLabel("euro: ");
-        runningTotal = new JLabel("N/A");
+        quan = new JTextField();
         addToCart = new JButton("Add To Cart");
         checkout = new JButton("Check Out");
         remove = new JButton("Remove Item from cart");
         cancel = new JButton("Cancel");
+        lMessage = new JLabel("");
+        euro = new JLabel("euro: ");
+        runningTotal = new JLabel("N/A");
+        shoppinglist = new JTextArea();
+        shoppinglist.setEditable(false);
+        //Add the stock label to panel
+            gridBagCons.gridx = 0;
+            gridBagCons.gridy = 0;
+            panel.add(stock , gridBagCons);
+        //Add the sName textfield to panel
+            gridBagCons.gridx = 1;
+            gridBagCons.gridy = 0;
+            panel.add(sName , gridBagCons);
+        //Add the quantity label to panel
+            gridBagCons.gridx = 0;
+            gridBagCons.gridy = 1;
+            panel.add(quantity , gridBagCons);
+        //Add the quan textfiend to panel
+            gridBagCons.gridx = 1;
+            gridBagCons.gridy = 1;
+            panel.add(quan , gridBagCons);
+        //Add the addToCart button to panel
+            gridBagCons.gridx = 0;
+            gridBagCons.gridy = 2;
+            panel.add(addToCart , gridBagCons);
+        //Add the checkout button to panel
+            gridBagCons.gridx = 0;
+            gridBagCons.gridy = 3;
+            panel.add(checkout , gridBagCons);
+        //Add the remove button to panel
+            gridBagCons.gridx = 2;
+            gridBagCons.gridy = 2;
+            panel.add(remove , gridBagCons);
+        //Add the cancel button to panel
+            gridBagCons.gridx = 3;
+            gridBagCons.gridy = 3;
+            panel.add(cancel , gridBagCons);
+        //Add the lMessage textfield to panel
+            gridBagCons.gridx = 0;
+            gridBagCons.gridy = 5;
+            panel.add(lMessage , gridBagCons);
+        //Add the euro textfield to panel
+            gridBagCons.gridx = 4;
+            gridBagCons.gridy = 5;
+            panel.add(euro , gridBagCons);
+        //Add the runningTotal textfiend to panel
+            gridBagCons.gridx = 4;
+            gridBagCons.gridy = 6;
+            panel.add(runningTotal , gridBagCons);
+        //Add the shoppingList textarea to panel
+            gridBagCons.gridx = 4;
+            gridBagCons.gridy = 0;
+            panel.add(shoppinglist , gridBagCons);
+
         addToCart.addActionListener(this);
         checkout.addActionListener(this);
         remove.addActionListener(this);
         cancel.addActionListener(this);
 
-
+        //Add panel to Frame
+        this.add(panel);
         this.setResizable(false);
         this.setVisible(true);
-        this.add(panel);
-
-
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -71,3 +125,4 @@ public class CartGUI extends JFrame implements Cinter, ActionListener {
         }
     }
 }
+
