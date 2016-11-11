@@ -63,7 +63,7 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
         }
         if (e.getSource() == back){
             try {
-                this.setVisible(false);
+                this.dispose();
                 menu a = new menu();
             } catch (IOException e1) {
                 e1.printStackTrace();

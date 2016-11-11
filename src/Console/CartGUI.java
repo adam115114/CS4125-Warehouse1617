@@ -1,5 +1,7 @@
 package Console;
 
+import Manage_Sales.Sales;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,10 +37,22 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addToCart){
-            //Add shit to cart
+            try {
+                Sales s = new Sales();
+                s.addToCart(Integer.parseInt(sName.getText()),Integer.parseInt(quan.getText()));
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         if (e.getSource() == checkout){
-            // Goes to checkout
+            try {
+                Sales s = new Sales();
+                s.updates();
+                s.invoice();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         if (e.getSource() == remove){
             //remove things from the text area

@@ -73,7 +73,7 @@ public class Stock_Manager implements Sinter
         } else
         {
             print("Which stock item would you like to view: ", false);
-            input = System.console().readLine();
+            input = in.nextLine();
             try
             {
                 stockID = Integer.parseInt(input);

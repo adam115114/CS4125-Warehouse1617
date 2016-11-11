@@ -81,13 +81,13 @@ public class LoginPage extends JFrame implements ActionListener, Cinter {
             lMessage.setText("incorrect input or ID not recognised.\nPlease try again");
         else {
             id = Integer.parseInt(name);
+            e.idNum = id;
             for (int x = 0; x < e.employee.size() || checker; x++) {
                 if (id == e.employee.get(x).getEmpno() && password.equals(e.employee.get(x).getPassword())) {
                     lMessage.setText("Login was Successful, please wait to be redirected");
                     checker = false;
                     this.setVisible(false);
                     menu menu = new menu();
-                    e.idNum = id;
                 }
                 else if(x == e.employee.size() - 1){
                     lMessage.setText("ID was not found. Please try again");
