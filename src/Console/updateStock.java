@@ -45,7 +45,7 @@ public class updateStock extends JFrame implements ActionListener, Cinter{
         if (e.getSource() == remove){
             /** remove stock from the stock folder. if inputs are
              * incorrect or there is not enough stock to remove the print a
-             * error message to lMessage with lMessage.setText("erro message");
+             * error message to lMessage with lMessage.setText("error message");
              */
         }
         if (e.getSource() == include){
