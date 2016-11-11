@@ -9,119 +9,148 @@ import java.io.IOException;
 /**
  * Created by Tadhg on 01/11/2016.
  */
-public class CartGUI extends JFrame implements Cinter, ActionListener {
+public class CartGUI extends JFrame implements Cinter, ActionListener
+{
 
     private JTextField sName, quan;
+    private GridBagLayout layout;
+    private GridBagConstraints gbc;
     private JButton addToCart, checkout, remove, cancel;
     private JLabel lMessage, euro, runningTotal, stock, quantity;
     private JPanel panel , panel1;
     private JTextArea shoppinglist;
-    private GridBagLayout gridBagCons;
 
     public CartGUI() {
         makeWindow();
     }
 
-    public void makeWindow() {
-        panel1 = new JPanel(gridBagCons);
-        gridBagCons = new GridBagLayout();
+    public void makeWindow()
+    {
         panel = new JPanel();
-        panel.setLayout(gridBagCons);
+        panel.setPreferredSize(new Dimension(800,400));
+        panel1 = new JPanel();
+        panel1.setPreferredSize(new Dimension(800,200));
+        layout = new GridBagLayout();
+        gbc = new GridBagConstraints();
         //Creating constraints and setting anchor and weight
-        GridBagConstraints gridBagCons = new GridBagConstraints();
-        gridBagCons.anchor = GridBagConstraints.FIRST_LINE_START;
-        gridBagCons.weightx = 0.5;
-        gridBagCons.weighty = 0.5;
-        gridBagCons.gridheight =100;
-        gridBagCons.gridwidth =200;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.insets = new Insets(5,5,5,5);
+        layout.rowHeights = new int[] {200,200,200,200,200};
+        layout.columnWidths =new int[] {100,100,100,100};
+        setLayout(layout);
 
         stock = new JLabel("Please enter stock Item: ");
-        stock.setFont(new Font("", Font.PLAIN, 8));
-        sName = new JTextField(8);
+        stock.setFont(new Font("", Font.PLAIN, 12));
+        sName = new JTextField(15);
         quantity = new JLabel("Enter Quantity: ");
-        quantity.setFont(new Font("", Font.PLAIN, 8));
-        quan = new JTextField(8);
+        quantity.setFont(new Font("", Font.PLAIN, 12));
+        quan = new JTextField(15);
         addToCart = new JButton("Add To Cart");
-        addToCart.setFont(new Font("", Font.PLAIN, 8));
+        addToCart.setFont(new Font("", Font.PLAIN, 12));
         checkout = new JButton("Check Out");
-        checkout.setFont(new Font("", Font.PLAIN, 8));
+        checkout.setFont(new Font("", Font.PLAIN, 12));
         remove = new JButton("Remove Item from cart");
-        remove.setFont(new Font("", Font.PLAIN, 8));
+        remove.setFont(new Font("", Font.PLAIN, 12));
         cancel = new JButton("Cancel");
-        cancel.setFont(new Font("", Font.PLAIN, 8));
+        cancel.setFont(new Font("", Font.PLAIN, 12));
         lMessage = new JLabel("");
         euro = new JLabel("euro: ");
         runningTotal = new JLabel("N/A");
         shoppinglist = new JTextArea();
         shoppinglist.setEditable(false);
         //Add the stock label to panel
-            gridBagCons.gridx = 0;
-            gridBagCons.gridy = 0;
-            panel.add(stock , gridBagCons);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        panel.add(stock , gbc);
         //Add the sName textfield to panel
-            gridBagCons.gridx = 1;
-            gridBagCons.gridy = 0;
-            panel.add(sName , gridBagCons);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        panel.add(sName , gbc);
         //Add the quantity label to panel
-            gridBagCons.gridx = 0;
-            gridBagCons.gridy = 1;
-            panel.add(quantity , gridBagCons);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        panel.add(quantity , gbc);
         //Add the quan textfiend to panel
-            gridBagCons.gridx = 1;
-            gridBagCons.gridy = 1;
-            panel.add(quan , gridBagCons);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        panel.add(quan , gbc);
         //Add the addToCart button to panel
-            gridBagCons.gridx = 0;
-            gridBagCons.gridy = 2;
-            panel.add(addToCart , gridBagCons);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        panel.add(addToCart , gbc);
         //Add the checkout button to panel
-            gridBagCons.gridx = 0;
-            gridBagCons.gridy = 3;
-            panel.add(checkout , gridBagCons);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        panel.add(checkout , gbc);
         //Add the remove button to panel
-            gridBagCons.gridx = 1;
-            gridBagCons.gridy = 2;
-            panel.add(remove , gridBagCons);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        panel.add(remove , gbc);
         //Add the cancel button to panel
-            gridBagCons.gridx = 1;
-            gridBagCons.gridy = 3;
-            panel.add(cancel , gridBagCons);
-        //Add the euro textfield to panel
-            gridBagCons.gridx = 0;
-            gridBagCons.gridy = 2;
-            panel1.add(euro , gridBagCons);
-        //Add the runningTotal textfiend to panel
-            gridBagCons.gridx = 0;
-            gridBagCons.gridy = 1;
-            panel1.add(runningTotal , gridBagCons);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        panel.add(cancel , gbc);
         //Add the lMessage textfield to panel
-            gridBagCons.gridx = 0;
-            gridBagCons.gridy = 5;
-            gridBagCons.gridwidth = 200;
-            panel.add(lMessage , gridBagCons);
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 4;
+        panel.add(lMessage , gbc);
+        //Add the euro textfield to panel
+        gbc.gridx = 5;
+        gbc.gridy = 2;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        panel1.add(euro , gbc);
+        //Add the runningTotal textfiend to panel
+        gbc.gridx = 5;
+        gbc.gridy = 1;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        panel1.add(runningTotal , gbc);
         //Add the shoppingList textarea to panel
-            gridBagCons.gridx = 0;
-            gridBagCons.gridy = 0;
-            gridBagCons.fill = GridBagConstraints.BOTH;
-            panel1.add(shoppinglist , gridBagCons);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 5;
+        gbc.gridheight = 3;
+        panel1.add(shoppinglist , gbc);
 
         //Add panel to Frame
-        this.getContentPane().add(BorderLayout.WEST, panel);
-        this.getContentPane().add(BorderLayout.EAST, panel1);
+        //this.getContentPane().add(BorderLayout.WEST, panel);
+        //this.getContentPane().add(BorderLayout.EAST, panel1);
+        this.setLayout(new GridLayout(1,2));
+        this.add(panel);
+        this.add(panel1);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Cart");
-        this.setSize(1000,600);
         this.setResizable(false);
         this.setVisible(true);
+        this.setSize(800,600);
 
         addToCart.addActionListener(this);
         checkout.addActionListener(this);
         remove.addActionListener(this);
         cancel.addActionListener(this);
     }
-    public static void main(String [] args){
-        CartGUI a = new CartGUI();
-    }
+    //public static void main(String [] args){
+      //  CartGUI a = new CartGUI();
+   //}
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addToCart){
