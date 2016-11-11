@@ -5,5 +5,4 @@ package Console;
  */
 public interface Cinter {
     void makeWindow();
-
 }

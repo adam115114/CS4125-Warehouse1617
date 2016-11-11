@@ -19,7 +19,7 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
         makeWindow();
     }
     public JLabel lMessage;
-    public JButton viewS, updateS;
+    public JButton viewS, updateS, back;
     public JPanel panel;
 
     public void makeWindow() {
@@ -30,14 +30,18 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
         viewS.setFont(new Font("",Font.PLAIN, 18));
         updateS = new JButton("Update Stock");
         updateS.setFont(new Font("", Font.PLAIN, 18));
+        back = new JButton("Back");
+        back.setFont(new Font("", Font.PLAIN, 18));
+        back.addActionListener(this);
         viewS.addActionListener(this);
         updateS.addActionListener(this);
         this.setSize(300,300);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        panel.setLayout(new GridLayout(3, 1));
+        panel.setLayout(new GridLayout(4, 1));
         panel.add(lMessage);
         panel.add(viewS);
         panel.add(updateS);
+        panel.add(back);
         this.add(panel);
         this.setVisible(true);
 
@@ -53,13 +57,17 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-        if (e.getSource() == updateS)
+        if (e.getSource() == updateS) {
+            this.setVisible(false);
+            updateStock a = new updateStock();
+        }
+        if (e.getSource() == back){
             try {
                 this.setVisible(false);
-                Stock_Manager v = new Stock_Manager();
-                v.addStock();
+                menu a = new menu();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+        }
     }
 }
