@@ -53,15 +53,17 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
                 String check = JOptionPane.showInputDialog("would you like to show all stock or only certain stock?\n" +
                                                             "(answer in a \"all stock\" or \"certain stock\")");
                 check.toLowerCase();
-                if(check.equals("all stock")){
-                    ViewStock a = new ViewStock(true);
-                    answer = false;
-                }else if(check.equals("certain stock")) {
-                    ViewStock a = new ViewStock(false);
-                    answer = false;
-                }else {
-                    JOptionPane.showMessageDialog(null, "incorrect input format. Please try again.");
-                }
+                try {
+                    if(check.equals("all stock")){
+                        ViewStock a = new ViewStock(true);
+                        answer = false;
+                    }else if(check.equals("certain stock")) {
+                        ViewStock a = new ViewStock(false);
+                        answer = false;
+                    }else {
+                        JOptionPane.showMessageDialog(null, "incorrect input format. Please try again.");
+                    }
+                } catch (IOException exc) {JOptionPane.showMessageDialog(null, "Failed to read Files.");}
             }
         }
         if (e.getSource() == updateS) {
