@@ -1,14 +1,11 @@
 package Console;
 
 import Manage_Stock.Stock_Manager;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Scanner;
-
 /**
  * Created by adam on 30/10/2016.
  */
@@ -18,9 +15,9 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
     public StockMenu() {
         makeWindow();
     }
-    public JLabel lMessage;
-    public JButton viewS, updateS;
-    public JPanel panel;
+    private JLabel lMessage;
+    private JButton viewS, updateS, back;
+    private JPanel panel;
 
     public void makeWindow() {
         panel = new JPanel();
@@ -30,14 +27,18 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
         viewS.setFont(new Font("",Font.PLAIN, 18));
         updateS = new JButton("Update Stock");
         updateS.setFont(new Font("", Font.PLAIN, 18));
+        back = new JButton("Back");
+        back.setFont(new Font("", Font.PLAIN, 18));
+        back.addActionListener(this);
         viewS.addActionListener(this);
         updateS.addActionListener(this);
         this.setSize(300,300);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        panel.setLayout(new GridLayout(3, 1));
+        panel.setLayout(new GridLayout(4, 1));
         panel.add(lMessage);
         panel.add(viewS);
         panel.add(updateS);
+        panel.add(back);
         this.add(panel);
         this.setVisible(true);
 
@@ -45,21 +46,35 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
 
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == viewS)
+        if (e.getSource() == viewS) {
+            this.dispose();
+            boolean answer = true;
+            while (answer) {
+                String check = JOptionPane.showInputDialog("would you like to show all stock or only certain stock?\n" +
+                                                            "(answer in a \"all stock\" or \"certain stock\")");
+                check.toLowerCase();
+                if(check.equals("all stock")){
+                    ViewStock a = new ViewStock(true);
+                    answer = false;
+                }else if(check.equals("certain stock")) {
+                    ViewStock a = new ViewStock(false);
+                    answer = false;
+                }else {
+                    JOptionPane.showMessageDialog(null, "incorrect input format. Please try again.");
+                }
+            }
+        }
+        if (e.getSource() == updateS) {
+            this.dispose();
+            updateStock a = new updateStock();
+        }
+        if (e.getSource() == back){
             try {
-                this.setVisible(false);
-                Stock_Manager v = new Stock_Manager();
-                v.checkStock();
+                this.dispose();
+                menu a = new menu();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-        if (e.getSource() == updateS)
-            try {
-                this.setVisible(false);
-                Stock_Manager v = new Stock_Manager();
-                v.addStock();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+        }
     }
 }

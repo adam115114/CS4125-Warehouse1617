@@ -18,6 +18,10 @@ public class menu extends JFrame implements ActionListener, Cinter {
     public int id;
 
     public menu() throws IOException {
+        makeWindow();
+    }
+
+    public void makeWindow() {
         jPanel1 = new JPanel();
         this.setSize(500, 500);
         lMessage = new JLabel("Welcome to the Main Menu", SwingConstants.CENTER);
@@ -42,28 +46,20 @@ public class menu extends JFrame implements ActionListener, Cinter {
         this.setVisible(true);
     }
 
-    public void makeWindow() {
-
-    }
-
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == option1) {
-            this.setVisible(false);
+            this.dispose();
             StockMenu a = new StockMenu();
         }
         if (e.getSource() == option2) {
-            this.setVisible(false);
-            Sales b = null;
+            this.dispose();
+            //Sales b = null;
             //b = new Sales();
             CartGUI c = new CartGUI();
-            try {
-                b.sale();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            //b.sale();
         }
         if (e.getSource() == option3) {
-            this.setVisible(false);
+            this.dispose();
             LoginPage b = new LoginPage();
         }
     }
