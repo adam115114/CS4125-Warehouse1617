@@ -63,10 +63,8 @@ public class menu extends JFrame implements ActionListener {
         }
         if (e.getSource() == option2) {
             this.dispose();
-            //Sales b = null;
-            //b = new Sales();
             CartGUI c = new CartGUI();
-            //b.sale();
+
         }
         if (e.getSource() == option3) {
             this.dispose();

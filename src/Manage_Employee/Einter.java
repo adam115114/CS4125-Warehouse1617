@@ -7,6 +7,6 @@ import java.io.IOException;
  */
 public interface Einter
 {
-    void addEmployee() throws IOException;
-    void deleteEmployee() throws IOException;
+    void addEmployee(String name, String passsword, boolean manager) throws IOException;
+    void deleteEmployee(String name, String password) throws IOException;
 }

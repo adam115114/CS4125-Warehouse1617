@@ -1,18 +1,57 @@
 package Manage_Employee;
 
 import Database_Manager.DataReader;
-import Manage_Employee.Einter;
 import objects.Employee;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import static Console.Print.print;
+
 
 /**
  * Created by Tadhg on 31/10/2016.
  */
 public class Employee_Manager implements Einter
 {
-        private ArrayList<Employee> employee = new ArrayList<>();
+    public  Employee_Manager(boolean option, String name, String password, boolean manager) throws IOException {
+        if(option){
+            addEmployee(name, password, manager);
+        }else{
+            deleteEmployee(name, password);
+        }
+    }
+    public void addEmployee(String name, String password, boolean manager) throws IOException {
+        DataReader reader = new DataReader();
+        int x = reader.employee.get(reader.employee.size() - 1).getEmpno();
+        Employee e = new Employee(x, name, password, manager);
+        reader.employee.add(e);
+        reader.update();
+
+
+    }
+    public void deleteEmployee(String name, String password) throws IOException {
+        DataReader reader = new DataReader();
+        boolean checker  = true;
+        for (int x = 0; x <= reader.employee.size() || checker == true; x ++ ){
+            if (reader.employee.get(x).getName().equals(name) && reader.employee.get(x).getPassword().equals(password)){
+                reader.employee.remove(x);
+                checker = false;
+                reader.update();
+                continue;
+            }
+        }
+        if(checker){
+            /**
+             *  display to the screen in a lMessage that that person wasn't there to delete and to try again
+             */
+        }
+
+
+    }
+}
+
+
+
+
+       /* private ArrayList<Employee> employee = new ArrayList<>();
         private DataReader reader;
 
         public Employee_Manager() throws IOException
@@ -28,7 +67,7 @@ public class Employee_Manager implements Einter
             String empName = "",empPass = "";
             boolean converted = false;
 
-            print("Please enter the I.D. , Name and Password of the new Employee (101 John Password): ", false);
+            print("Please enter the I.D. , Name and Password of the update employee info (101 John Password): ", false);
             input = System.console().readLine();
             tempArray = input.split(" ");
             try
@@ -79,5 +118,4 @@ public class Employee_Manager implements Einter
 
             reader.employee = employee;
             reader.update();
-        }
-}
+        }*/
