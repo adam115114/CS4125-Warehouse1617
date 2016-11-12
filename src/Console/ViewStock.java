@@ -6,27 +6,36 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import Database_Manager.DataReader;
+import objects.Stock;
+
 /**
  * Created by adam on 11/11/2016.
  */
 
 public class ViewStock extends JFrame implements ActionListener {
     private JTextArea jDisplay;
-    private JButton submit ,back;
+    private JButton submit, back;
     private JTextField input;
     private JLabel lMessage, title;
     private JScrollPane scroll;
     private JPanel panel;
-    public ViewStock(Boolean checker) {
+    private DataReader dr;
+
+    public ViewStock(Boolean checker) throws IOException {
         panel = new JPanel();
         back = new JButton("back");
         back.addActionListener(this);
+        dr = new DataReader();
         if (checker) {
-            jDisplay = new JTextArea(20,40);
+            jDisplay = new JTextArea(20, 40);
             jDisplay.setEditable(false);
-            /**
-             * insert code to fill text area with all Stock items
-             */
+            String displayText = "";
+            for (Stock s : dr.stock) {
+                String str = "ID: " + s.getStockNum() + ", Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice();
+                displayText += str + "\n";
+            }
+            jDisplay.setText(displayText);
             scroll = new JScrollPane(jDisplay);
             scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
             panel.add(jDisplay);
@@ -54,8 +63,9 @@ public class ViewStock extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == back){
+        if (e.getSource() == back) {
             this.dispose();
             try {
                 menu a = new menu();
@@ -63,9 +73,32 @@ public class ViewStock extends JFrame implements ActionListener {
                 e1.printStackTrace();
             }
         }
-        if (e.getSource() == submit){
+        if (e.getSource() == submit) {
             String userInput = input.getText();
             input.setText("");
+            boolean found = false;
+            if (userInput.matches("[0-9]+")) {
+                try {
+                    int inputNum = Integer.parseInt(userInput);
+                    for (Stock s : dr.stock) {
+                        if (s.getStockNum() == inputNum) {
+                            jDisplay.setText("Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice());
+                            found = true;
+                        }
+                    }
+                } catch (NumberFormatException exc) {
+                    lMessage.setText("Failed to convert input to a number.");
+                }
+            } else {
+                for (Stock s : dr.stock) {
+                    if (s.getName() == userInput) {
+                        jDisplay.setText("Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice());
+                        found = true;
+                    }
+                }
+            }
+            if (!found)
+                lMessage.setText("Could not find an item with: " + userInput);
             /**
              * here is where you add the code to look for the item and return it to jDisplay or if it doesn't exists
              * then print a error message to lMessage
