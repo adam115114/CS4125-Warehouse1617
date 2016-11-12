@@ -16,7 +16,6 @@ public class DataReader implements Dinter{
 
     public ArrayList<Employee> employee = new ArrayList<>();
     public ArrayList<Stock> stock = new ArrayList<>();
-    public int idNum;
 
     public DataReader() throws IOException {
         read();
@@ -56,19 +55,21 @@ public class DataReader implements Dinter{
     public void update() throws IOException /* where the text file will be updated when the arraylists are edited*/{
         Print p = new Print();
         File stockf = new File("res\\Stock.txt");
+        p.printToFile(stockf, "", false);
         for (Stock s : stock) {
-            p.printToFile(stockf, "" + s.getStockNum() + "," + s.getName() + "," + s.getQuantity() + "," + s.getPrice(), false);
+            p.printToFile(stockf, "" + s.getStockNum() + "," + s.getName() + "," + s.getQuantity() + "," + s.getPrice() + "\n", true);
         }
-/*
+
         try
         {
-            File empf = new File("res\\employee.text");
+            File empf = new File("res\\employee.txt");
+            p.printToFile(empf, "", false);
             for (Employee e : employee)
-                p.printToFile(empf, e.getEmpno() + "," + e.getName() + "," + e.getPassword());
+                p.printToFile(empf, e.getEmpno() + "," + e.getName() + "," + e.getPassword() + "\n", true);
         } catch (Exception e)
         {
             JOptionPane.showMessageDialog(null, "employee.txt could not be found.", "An Error has occurred.", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }
 
 }

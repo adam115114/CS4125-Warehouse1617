@@ -21,6 +21,35 @@ public class Sales implements Sinter {
     public Sales() throws IOException {
     }
 
+    public boolean addToCart(int num, int quan) throws IOException {
+        DataReader e = new DataReader();
+        idNum = e.employee.get(LoginPage.number).getEmpno();
+        boolean n = false, q = false;
+        String name;
+        System.out.println(num + " " + quan + e.stock.size());
+        float price;
+        for (int i = 0; i < e.stock.size() && !n; i++) {
+            if (e.stock.get(i).getStockNum() == num) {
+                n = true;
+                if (e.stock.get(i).getQuantity() >= quan) {
+                    q = true;
+                    n = true;
+                    name = e.stock.get(i).getName();
+                    price = e.stock.get(i).getPrice();
+                    Stock s = new Stock(num, name, quan, price);
+                    System.out.println(num + name + quan + price);
+                    cart.add(s);
+                    return true;
+                }
+            }
+        }
+        if (!q)
+            return false;
+        else if(!n)
+            return false;
+        return false;
+    }
+    /*
     public void sale() throws IOException {
         idNum = e.idNum;
         Scanner in = new Scanner(System.in);
@@ -63,9 +92,10 @@ public class Sales implements Sinter {
                 invoice();
             }
         }
-    }
+    }*/
 
     public void invoice() throws IOException {
+        idNum = e.employee.get(LoginPage.number).getEmpno();
         p.print(cart.size(),true);
         String out = "";
         float total = 0.0f;
@@ -86,12 +116,20 @@ public class Sales implements Sinter {
         e.update();
         menu menu = new menu();
     }
-
-    public void cancel() {
-
+    public void updates(){
+        int no;
+        for(int j = 0; j < cart.size(); j++)
+        {
+            for (int i = 0; i < e.stock.size(); i++) {
+                if (e.stock.get(i).getStockNum() == cart.get(j).getStockNum()) {
+                        no = e.stock.get(i).getQuantity() - cart.get(j).getQuantity();
+                        e.stock.get(i).setQuantity(no);
+                }
+            }
+        }
     }
 
-    private String currentDate() {
+    public String currentDate() {
         DateFormat dateformat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         Date currentDate = new Date();
         return dateformat.format(currentDate);

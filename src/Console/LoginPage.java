@@ -5,6 +5,7 @@ import Database_Manager.DataReader;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import javax.swing.*;
 
@@ -39,7 +40,6 @@ public class LoginPage extends JFrame implements ActionListener, Cinter {
         logIn.addActionListener(this);
         Cancel = new JButton("Cancel");
         Cancel.addActionListener(this);
-
         this.setResizable(false);
         panel.add(username);
         panel.add(nameInput);
@@ -90,7 +90,6 @@ public class LoginPage extends JFrame implements ActionListener, Cinter {
                     this.setVisible(false);
                     number = x;
                     menu menu = new menu();
-                    e.idNum = id;
                 }
                 else if(x == e.employee.size() - 1){
                     lMessage.setText("ID was not found. Please try again");
