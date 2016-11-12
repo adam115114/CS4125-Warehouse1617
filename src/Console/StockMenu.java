@@ -1,14 +1,11 @@
 package Console;
 
 import Manage_Stock.Stock_Manager;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Scanner;
-
 /**
  * Created by adam on 30/10/2016.
  */
@@ -18,9 +15,9 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
     public StockMenu() {
         makeWindow();
     }
-    public JLabel lMessage;
-    public JButton viewS, updateS, back;
-    public JPanel panel;
+    private JLabel lMessage;
+    private JButton viewS, updateS, back;
+    private JPanel panel;
 
     public void makeWindow() {
         panel = new JPanel();
@@ -49,16 +46,26 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
 
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == viewS)
-            try {
-                this.setVisible(false);
-                Stock_Manager v = new Stock_Manager();
-                v.checkStock();
-            } catch (IOException e1) {
-                e1.printStackTrace();
+        if (e.getSource() == viewS) {
+            this.dispose();
+            boolean answer = true;
+            while (answer) {
+                String check = JOptionPane.showInputDialog("would you like to show all stock or only certain stock?\n" +
+                                                            "(answer in a \"all stock\" or \"certain stock\")");
+                check.toLowerCase();
+                if(check.equals("all stock")){
+                    ViewStock a = new ViewStock(true);
+                    answer = false;
+                }else if(check.equals("certain stock")) {
+                    ViewStock a = new ViewStock(false);
+                    answer = false;
+                }else {
+                    JOptionPane.showMessageDialog(null, "incorrect input format. Please try again.");
+                }
             }
+        }
         if (e.getSource() == updateS) {
-            this.setVisible(false);
+            this.dispose();
             updateStock a = new updateStock();
         }
         if (e.getSource() == back){

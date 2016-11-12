@@ -48,22 +48,18 @@ public class menu extends JFrame implements ActionListener, Cinter {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == option1) {
-            this.setVisible(false);
+            this.dispose();
             StockMenu a = new StockMenu();
         }
         if (e.getSource() == option2) {
-            this.setVisible(false);
-            Sales b = null;
+            this.dispose();
+            //Sales b = null;
             //b = new Sales();
             CartGUI c = new CartGUI();
-            try {
-                b.sale();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            //b.sale();
         }
         if (e.getSource() == option3) {
-            this.setVisible(false);
+            this.dispose();
             LoginPage b = new LoginPage();
         }
     }
