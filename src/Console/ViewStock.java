@@ -23,24 +23,27 @@ public class ViewStock extends JFrame implements ActionListener {
     private DataReader dr;
 
     public ViewStock(Boolean checker) throws IOException {
+        jDisplay = new JTextArea();
+        scroll = new JScrollPane(jDisplay);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setMinimumSize(new Dimension (480,410));
+        scroll.setPreferredSize(new Dimension (480,410));
         panel = new JPanel();
         back = new JButton("back");
         back.addActionListener(this);
         dr = new DataReader();
         if (checker) {
-            jDisplay = new JTextArea(20, 40);
             jDisplay.setEditable(false);
             String displayText = "";
             for (Stock s : dr.stock) {
-                String str = "ID: " + s.getStockNum() + ", Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice();
-                displayText += str + "\n";
+                jDisplay.append("ID: " + s.getStockNum() + ", Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice() + "\n");
             }
-            jDisplay.setText(displayText);
-            scroll = new JScrollPane(jDisplay);
-            scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-            panel.add(jDisplay);
+
+
+            panel.add(scroll);
             panel.add(back);
         } else {
+
             title = new JLabel("Enter Item ID");
             submit = new JButton("submit");
             submit.addActionListener(this);
@@ -49,18 +52,19 @@ public class ViewStock extends JFrame implements ActionListener {
             /**
              *lMessage is what you use to print errors the person has made e.g if item ID doesn't exist
              */
-            jDisplay = new JTextArea(400, 100);
             jDisplay.setEditable(false);
             panel.add(title);
             panel.add(input);
             panel.add(submit);
-            panel.add(lMessage);
             panel.add(back);
-            panel.add(jDisplay);
+            panel.add(lMessage);
+            panel.add(scroll);
         }
-        this.add(panel);
-        this.setSize(400, 400);
+        this.add(panel, BorderLayout.CENTER);
+        this.setSize(500,500);
+
         this.setVisible(true);
+        this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -77,12 +81,13 @@ public class ViewStock extends JFrame implements ActionListener {
             String userInput = input.getText();
             input.setText("");
             boolean found = false;
+            lMessage.setText("");
             if (userInput.matches("[0-9]+")) {
                 try {
                     int inputNum = Integer.parseInt(userInput);
                     for (Stock s : dr.stock) {
                         if (s.getStockNum() == inputNum) {
-                            jDisplay.setText("Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice());
+                            jDisplay.append("Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice() + "\n");
                             found = true;
                         }
                     }
@@ -92,7 +97,7 @@ public class ViewStock extends JFrame implements ActionListener {
             } else {
                 for (Stock s : dr.stock) {
                     if (s.getName() == userInput) {
-                        jDisplay.setText("Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice());
+                        jDisplay.append("Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice());
                         found = true;
                     }
                 }
