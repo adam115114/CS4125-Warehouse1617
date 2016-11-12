@@ -11,11 +11,13 @@ import javax.swing.*;
 
 public class LoginPage extends JFrame implements ActionListener, Cinter {
 
+
     private JLabel username, password, lMessage;
     private JButton logIn, Cancel;
     private JTextField nameInput;
     private JPasswordField passwordInput;
     private JPanel panel, panel1;
+    public static int number;
 
     public LoginPage() {
         this.setVisible(false);
@@ -87,6 +89,7 @@ public class LoginPage extends JFrame implements ActionListener, Cinter {
                     lMessage.setText("Login was Successful, please wait to be redirected");
                     checker = false;
                     this.setVisible(false);
+                    number = x;
                     menu menu = new menu();
                 }
                 else if(x == e.employee.size() - 1){
