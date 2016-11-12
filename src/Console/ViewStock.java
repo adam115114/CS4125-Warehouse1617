@@ -9,6 +9,7 @@ import java.io.IOException;
 /**
  * Created by adam on 11/11/2016.
  */
+
 public class ViewStock extends JFrame implements ActionListener {
     private JTextArea jDisplay;
     private JButton submit ,back;
@@ -21,14 +22,13 @@ public class ViewStock extends JFrame implements ActionListener {
         back = new JButton("back");
         back.addActionListener(this);
         if (checker) {
-            jDisplay = new JTextArea(400, 300);
+            jDisplay = new JTextArea(20,40);
             jDisplay.setEditable(false);
             /**
              * insert code to fill text area with all Stock items
              */
             scroll = new JScrollPane(jDisplay);
             scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-            panel.setLayout(new GridLayout(2, 1));
             panel.add(jDisplay);
             panel.add(back);
         } else {
@@ -54,7 +54,6 @@ public class ViewStock extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == back){
             this.dispose();
