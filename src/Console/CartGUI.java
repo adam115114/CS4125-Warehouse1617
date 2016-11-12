@@ -27,82 +27,84 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
     public void makeWindow()
     {
         panel = new JPanel();
-        panel.setPreferredSize(new Dimension(800,400));
-        panel1 = new JPanel();
-        panel1.setPreferredSize(new Dimension(800,200));
+        panel.setPreferredSize(new Dimension(800,600));
+        //panel1 = new JPanel();
+        //panel1.setPreferredSize(new Dimension(800,200));
         layout = new GridBagLayout();
         gbc = new GridBagConstraints();
         //Creating constraints and setting anchor and weight
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc.insets = new Insets(5,5,5,5);
-        layout.rowHeights = new int[] {200,200,200,200,200};
-        layout.columnWidths =new int[] {100,100,100,100};
-        setLayout(layout);
+        gbc.insets = new Insets(2,2,2,2);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        layout.rowHeights = new int[] {100,100,100,100,100,100};
+        layout.columnWidths =new int[] {200,200,200,200};
+        panel.setLayout(layout);
 
         stock = new JLabel("Please enter stock Item: ");
-        stock.setFont(new Font("", Font.PLAIN, 12));
+        stock.setFont(new Font("", Font.PLAIN, 15));
         sName = new JTextField(15);
         quantity = new JLabel("Enter Quantity: ");
-        quantity.setFont(new Font("", Font.PLAIN, 12));
+        quantity.setFont(new Font("", Font.PLAIN, 15));
         quan = new JTextField(15);
         addToCart = new JButton("Add To Cart");
-        addToCart.setFont(new Font("", Font.PLAIN, 12));
+        addToCart.setFont(new Font("", Font.PLAIN, 15));
         checkout = new JButton("Check Out");
-        checkout.setFont(new Font("", Font.PLAIN, 12));
+        checkout.setFont(new Font("", Font.PLAIN, 15));
         remove = new JButton("Remove Item from cart");
-        remove.setFont(new Font("", Font.PLAIN, 12));
+        remove.setFont(new Font("", Font.PLAIN, 15));
         cancel = new JButton("Cancel");
-        cancel.setFont(new Font("", Font.PLAIN, 12));
+        cancel.setFont(new Font("", Font.PLAIN, 15));
         lMessage = new JLabel("");
-        euro = new JLabel("euro: ");
+        euro = new JLabel("Euro: ");
+        euro.setFont(new Font("", Font.PLAIN, 15));
         runningTotal = new JLabel("N/A");
         shoppinglist = new JTextArea();
         shoppinglist.setEditable(false);
         //Add the stock label to panel
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         gbc.gridheight = 1;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         panel.add(stock , gbc);
         //Add the sName textfield to panel
         gbc.gridx = 1;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         gbc.gridheight = 1;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         panel.add(sName , gbc);
         //Add the quantity label to panel
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(quantity , gbc);
         //Add the quan textfiend to panel
         gbc.gridx = 1;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.gridheight = 1;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         panel.add(quan , gbc);
         //Add the addToCart button to panel
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(addToCart , gbc);
         //Add the checkout button to panel
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(checkout , gbc);
         //Add the remove button to panel
         gbc.gridx = 1;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(remove , gbc);
         //Add the cancel button to panel
         gbc.gridx = 1;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(cancel , gbc);
@@ -110,33 +112,34 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridheight = 1;
-        gbc.gridwidth = 4;
+        gbc.gridwidth = 2;
         panel.add(lMessage , gbc);
         //Add the euro textfield to panel
-        gbc.gridx = 5;
-        gbc.gridy = 2;
+        gbc.gridx = 2;
+        gbc.gridy = 5;
         gbc.gridheight = 1;
-        gbc.gridwidth = 2;
-        panel1.add(euro , gbc);
+        gbc.gridwidth = 1;
+        panel.add(euro , gbc);
         //Add the runningTotal textfiend to panel
-        gbc.gridx = 5;
-        gbc.gridy = 1;
+        gbc.gridx = 3;
+        gbc.gridy = 5;
         gbc.gridheight = 1;
-        gbc.gridwidth = 2;
-        panel1.add(runningTotal , gbc);
+        gbc.gridwidth = 1;
+        panel.add(runningTotal , gbc);
         //Add the shoppingList textarea to panel
-        gbc.gridx = 0;
+        gbc.gridx = 2;
         gbc.gridy = 0;
-        gbc.gridwidth = 5;
-        gbc.gridheight = 3;
-        panel1.add(shoppinglist , gbc);
+        gbc.gridwidth = 2;
+        gbc.gridheight = 4;
+        gbc.fill = GridBagConstraints.BOTH;
+        panel.add(shoppinglist , gbc);
 
         //Add panel to Frame
         //this.getContentPane().add(BorderLayout.WEST, panel);
         //this.getContentPane().add(BorderLayout.EAST, panel1);
-        this.setLayout(new GridLayout(1,2));
+        //this.setLayout(new GridLayout(1,2));
         this.add(panel);
-        this.add(panel1);
+        //this.add(panel1);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Cart");
         this.setResizable(false);
