@@ -3,18 +3,24 @@ package objects;
 
 public class Employee {
     private int empno;
-    private boolean check;
+    private boolean check, manager;
     private String name, password;
 
-    public Employee(int inNum, String inName, String inPassword) {
+    public Employee(int inNum, String inName, String inPassword, boolean inManager) {
         empno = inNum;
         name = inName;
         password = inPassword;
+        manager = inManager;
+
     }
 
     public String getName() {
         return name;
     }
+
+    public boolean isCheck() { return manager; }
+
+    public void setCheck(boolean check) { this.check = manager; }
 
     public String getPassword() {
         return password;

@@ -36,7 +36,7 @@ public class DataReader implements Dinter{
         while (in.hasNext()) {
             aLineFromFile = in.nextLine();
             elements = aLineFromFile.split(",");
-            a = new Employee(Integer.parseInt(elements[0]), elements[1], elements[2]);
+            a = new Employee(Integer.parseInt(elements[0]), elements[1], elements[2], Boolean.parseBoolean(elements[3]));
             employee.add(a);
         }
 

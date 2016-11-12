@@ -54,7 +54,7 @@ public class ViewStock extends JFrame implements ActionListener {
             panel.add(title);
             panel.add(input);
             panel.add(submit);
-            panel.add(lMessage);
+            panel.add(lMessage);                                
             panel.add(back);
             panel.add(jDisplay);
         }
