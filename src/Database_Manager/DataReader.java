@@ -62,7 +62,7 @@ public class DataReader implements Dinter{
 
         try
         {
-            File empf = new File("res\\employee.text");
+            File empf = new File("res\\employee.txt");
             p.printToFile(empf, "", false);
             for (Employee e : employee)
                 p.printToFile(empf, e.getEmpno() + "," + e.getName() + "," + e.getPassword() + "\n", true);
