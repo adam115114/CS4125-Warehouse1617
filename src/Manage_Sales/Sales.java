@@ -21,11 +21,12 @@ public class Sales implements Sinter {
     public Sales() throws IOException {
     }
 
-    public boolean addToCart(int num, int quan){
-        idNum = e.idNum;
+    public boolean addToCart(int num, int quan) throws IOException {
+        DataReader e = new DataReader();
+        idNum = e.employee.get(LoginPage.number).getEmpno();
         boolean n = false, q = false;
         String name;
-        int no;
+        System.out.println(num + " " + quan + e.stock.size());
         float price;
         for (int i = 0; i < e.stock.size() && !n; i++) {
             if (e.stock.get(i).getStockNum() == num) {
@@ -36,6 +37,7 @@ public class Sales implements Sinter {
                     name = e.stock.get(i).getName();
                     price = e.stock.get(i).getPrice();
                     Stock s = new Stock(num, name, quan, price);
+                    System.out.println(num + name + quan + price);
                     cart.add(s);
                     return true;
                 }
@@ -93,6 +95,7 @@ public class Sales implements Sinter {
     }*/
 
     public void invoice() throws IOException {
+        idNum = e.employee.get(LoginPage.number).getEmpno();
         p.print(cart.size(),true);
         String out = "";
         float total = 0.0f;

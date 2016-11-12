@@ -5,6 +5,7 @@ import Database_Manager.DataReader;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import javax.swing.*;
 
@@ -39,7 +40,6 @@ public class LoginPage extends JFrame implements ActionListener, Cinter {
         logIn.addActionListener(this);
         Cancel = new JButton("Cancel");
         Cancel.addActionListener(this);
-
         this.setResizable(false);
         panel.add(username);
         panel.add(nameInput);
@@ -83,7 +83,6 @@ public class LoginPage extends JFrame implements ActionListener, Cinter {
             lMessage.setText("incorrect input or ID not recognised.\nPlease try again");
         else {
             id = Integer.parseInt(name);
-            e.idNum = id;
             for (int x = 0; x < e.employee.size() || checker; x++) {
                 if (id == e.employee.get(x).getEmpno() && password.equals(e.employee.get(x).getPassword())) {
                     lMessage.setText("Login was Successful, please wait to be redirected");

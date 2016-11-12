@@ -21,6 +21,7 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
     private JLabel lMessage, euro, runningTotal, stock, quantity;
     private JPanel panel , panel1;
     private JTextArea shoppinglist;
+    private Sales s;
 
     public CartGUI() {
         makeWindow();
@@ -152,6 +153,11 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
         checkout.addActionListener(this);
         remove.addActionListener(this);
         cancel.addActionListener(this);
+        try {
+            s = new Sales();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     //public static void main(String [] args){
       //  CartGUI a = new CartGUI();
@@ -160,18 +166,18 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addToCart){
             try {
-                Sales s = new Sales();
                 s.addToCart(Integer.parseInt(sName.getText()),Integer.parseInt(quan.getText()));
-
+                sName.setText("");
+                quan.setText("");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
         }
         if (e.getSource() == checkout){
             try {
-                Sales s = new Sales();
                 s.updates();
                 s.invoice();
+                this.dispose();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -181,7 +187,7 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
         }
         if (e.getSource() == cancel){
             // cancel back to the main menu
-            this.setVisible(false);
+            this.dispose();
             try {
                 menu a = new menu();
             } catch (IOException e1) {

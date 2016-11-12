@@ -52,7 +52,7 @@ public class Stock_Manager implements Sinter
                 }
         }
         dr.stock = stock;
-        dr.update();
+        //dr.update();
     }
 
     public void checkStock() throws IOException
