@@ -17,6 +17,8 @@ public class Sales implements Sinter {
     ArrayList<Stock> cart = new ArrayList<>();
     DataReader e = new DataReader();
     public int idNum;
+    public float total = 0.0f;
+    public String shop;
 
     public Sales() throws IOException {
     }
@@ -37,7 +39,7 @@ public class Sales implements Sinter {
                     name = e.stock.get(i).getName();
                     price = e.stock.get(i).getPrice();
                     Stock s = new Stock(num, name, quan, price);
-                    System.out.println(num + name + quan + price);
+                    shop = "" + num + "\t" +  name + "\t" + quan + "\t" + price;
                     cart.add(s);
                     return true;
                 }
@@ -98,15 +100,14 @@ public class Sales implements Sinter {
         idNum = e.employee.get(LoginPage.number).getEmpno();
         p.print(cart.size(),true);
         String out = "";
-        float total = 0.0f;
         File invoices = new File("res\\invoices.txt");
         out +=  "Product\tQuantity\tPrice\n";
         if (!invoices.exists())
             invoices.createNewFile();
         for(Stock x : cart) {
             out += x.getName() + "\t" + x.getQuantity() + "\t\t\t" + (x.getQuantity() * x.getPrice()) + "\n";
-            total += (x.getQuantity() * x.getPrice());
         }
+        totals();
         p.printToFile(invoices, "" + idNum + "," + total + "," + currentDate() + "\n", true);
         String rec = "res\\Receipts\\" + "" + idNum;
         File receipt = new File(rec);
@@ -133,5 +134,12 @@ public class Sales implements Sinter {
         DateFormat dateformat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         Date currentDate = new Date();
         return dateformat.format(currentDate);
+    }
+    public void totals()
+    {
+        total = 0.0f;
+        for(Stock x : cart) {
+            total += (x.getQuantity() * x.getPrice());
+        }
     }
 }

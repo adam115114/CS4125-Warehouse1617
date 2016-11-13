@@ -53,23 +53,28 @@ public class DataReader implements Dinter{
     }
 
     public void update() throws IOException /* where the text file will be updated when the arraylists are edited*/{
+        boolean x  = true;
+        String a = "";
         Print p = new Print();
         File stockf = new File("res\\Stock.txt");
         p.printToFile(stockf, "", false);
         for (Stock s : stock) {
-            p.printToFile(stockf, "" + s.getStockNum() + "," + s.getName() + "," + s.getQuantity() + "," + s.getPrice() + "\n", true);
+            p.printToFile(stockf, "" + a + s.getStockNum() + "," + s.getName() + "," + s.getQuantity() + "," + s.getPrice() , true);
+            if (x) {
+                x=false;
+                a="\n";
+            }
         }
-
-        try
-        {
-            File empf = new File("res\\employee.txt");
-            p.printToFile(empf, "", false);
-            for (Employee e : employee)
-                p.printToFile(empf, e.getEmpno() + "," + e.getName() + "," + e.getPassword() + "\n", true);
-        } catch (Exception e)
-        {
-            JOptionPane.showMessageDialog(null, "employee.txt could not be found.", "An Error has occurred.", JOptionPane.ERROR_MESSAGE);
+        x=true;
+        a = "";
+        File empf = new File("res\\employee.txt");
+        p.printToFile(empf, "", false);
+        for (Employee e : employee) {
+            p.printToFile(empf,"" + a + e.getEmpno() + "," + e.getName() + "," + e.getPassword() + "," + e.isCheck(), true);
+            if(x) {
+                x =false;
+                a="\n";
+            }
         }
     }
-
 }
