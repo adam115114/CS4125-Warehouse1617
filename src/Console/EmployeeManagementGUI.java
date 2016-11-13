@@ -46,9 +46,7 @@ public class EmployeeManagementGUI extends JFrame implements ActionListener, Cin
             EmployeeEditGUI one = new EmployeeEditGUI();
 
         }if(e.getSource() == option3) {
-            /**
-             * this is for if we have time to do this tomorrow to display records for each employee
-             */
+            EmployeeRecord one = new EmployeeRecord();
         }if (e.getSource() == option4){
             this.dispose();
             try {

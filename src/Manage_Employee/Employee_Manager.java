@@ -27,6 +27,12 @@ public class Employee_Manager implements Einter
         Employee e = new Employee(x, name, password, manager);
         reader.employee.add(e);
         reader.update();
+        JOptionPane.showMessageDialog(null, "New employee created. \n" +
+                                            "info:\n" +
+                                            "Name:                " + name +
+                                            "\nPassword:       " + password +
+                                            "\nManager:          " + manager +
+                                            "\nEmployee No.:   " + x);
 
 
     }
