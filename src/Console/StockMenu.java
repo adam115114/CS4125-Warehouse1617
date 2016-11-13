@@ -1,6 +1,8 @@
 package Console;
 
 import Manage_Stock.Stock_Manager;
+import objects.Stock;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -52,18 +54,25 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
             while (answer) {
                 String check = JOptionPane.showInputDialog("would you like to show all stock or only certain stock?\n" +
                                                             "(answer in a \"all stock\" or \"certain stock\")");
-                check.toLowerCase();
-                try {
-                    if(check.equals("all stock")){
-                        ViewStock a = new ViewStock(true);
-                        answer = false;
-                    }else if(check.equals("certain stock")) {
-                        ViewStock a = new ViewStock(false);
-                        answer = false;
-                    }else {
-                        JOptionPane.showMessageDialog(null, "incorrect input format. Please try again.");
+                if (check != null) {
+                    check.toLowerCase();
+                    try {
+                        if (check.equals("all stock")) {
+                            ViewStock a = new ViewStock(true);
+                            answer = false;
+                        } else if (check.equals("certain stock")) {
+                            ViewStock a = new ViewStock(false);
+                            answer = false;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "incorrect input format. Please try again.");
+                        }
+                    } catch (IOException exc) {
+                        JOptionPane.showMessageDialog(null, "Failed to read Files.");
                     }
-                } catch (IOException exc) {JOptionPane.showMessageDialog(null, "Failed to read Files.");}
+                } else {
+                    StockMenu a = new StockMenu();
+                    answer = false;
+                }
             }
         }
         if (e.getSource() == updateS) {

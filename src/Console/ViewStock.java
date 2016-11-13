@@ -38,12 +38,9 @@ public class ViewStock extends JFrame implements ActionListener {
             for (Stock s : dr.stock) {
                 jDisplay.append("ID: " + s.getStockNum() + ", Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice() + "\n");
             }
-
-
             panel.add(scroll);
             panel.add(back);
         } else {
-
             title = new JLabel("Enter Item ID");
             submit = new JButton("submit");
             submit.addActionListener(this);
