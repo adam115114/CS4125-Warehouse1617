@@ -30,14 +30,14 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
     public void makeWindow()
     {
         panel = new JPanel();
-        panel.setPreferredSize(new Dimension(800,300));
+        panel.setPreferredSize(new Dimension(800,250));
         layout = new GridBagLayout();
         gbc = new GridBagConstraints();
         //Creating constraints and setting anchor and weight
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.insets = new Insets(2,2,2,2);
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        layout.rowHeights = new int[] {50,50,50,50,50,50};
+        layout.rowHeights = new int[] {50,50,50,50,50};
         layout.columnWidths =new int[] {200,200,200,200};
         panel.setLayout(layout);
 
@@ -63,67 +63,67 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
         shoppinglist.setEditable(false);
         //Add the stock label to panel
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 0;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(stock , gbc);
         //Add the sName textfield to panel
         gbc.gridx = 1;
-        gbc.gridy = 1;
+        gbc.gridy = 0;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(sName , gbc);
         //Add the quantity label to panel
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(quantity , gbc);
         //Add the quan textfiend to panel
         gbc.gridx = 1;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(quan , gbc);
         //Add the addToCart button to panel
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 2;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(addToCart , gbc);
         //Add the checkout button to panel
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(checkout , gbc);
         //Add the remove button to panel
         gbc.gridx = 1;
-        gbc.gridy = 3;
+        gbc.gridy = 2;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(remove , gbc);
         //Add the cancel button to panel
         gbc.gridx = 1;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(cancel , gbc);
         //Add the lMessage textfield to panel
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 4;
         gbc.gridheight = 1;
         gbc.gridwidth = 2;
         panel.add(lMessage , gbc);
         //Add the euro textfield to panel
         gbc.gridx = 2;
-        gbc.gridy = 5;
+        gbc.gridy = 4;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(euro , gbc);
         //Add the runningTotal textfiend to panel
         gbc.gridx = 3;
-        gbc.gridy = 5;
+        gbc.gridy = 4;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         panel.add(runningTotal , gbc);
@@ -156,24 +156,40 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
         } catch (IOException e) {
             e.printStackTrace();
         }
-        shoppinglist.append("Number\tProduct\tQuantity\tPrice\n");
     }
-    //public static void main(String [] args){
-      //  CartGUI a = new CartGUI();
-   //}
 
     public void actionPerformed(ActionEvent e) {
+        String pattern = "[0-9]+";
         if (e.getSource() == addToCart){
+            lMessage.setText("");
             try {
-                s.addToCart(Integer.parseInt(sName.getText()),Integer.parseInt(quan.getText()));
-                sName.setText("");
-                quan.setText("");
-                shoppinglist.append(s.shop + "\n");
-                s.totals();
-                runningTotal.setText("" + s.total);
-            } catch (IOException e1) {
+                String n = sName.getText();
+                String q = quan.getText();
+                if(!n.matches(pattern) || !q.matches(pattern))
+                    lMessage.setText("Error: incorrect input");
+                else
+                {
+                    if (s.inCart(Integer.parseInt(n))) {
+                        s.addCart(Integer.parseInt(n), Integer.parseInt(q));
+                        s.list();
+                        shoppinglist.setText(s.shop + "\n");
+                        s.totals();
+                        runningTotal.setText("" + s.total);
+                    } else {
+                        if (s.addToCart(Integer.parseInt(n), Integer.parseInt(q))) {
+                            s.list();
+                            shoppinglist.setText(s.shop + "\n");
+                            s.totals();
+                            runningTotal.setText("" + s.total);
+                        } else
+                            lMessage.setText(s.error);
+                    }
+                }
+            }catch(Exception e1){
                 e1.printStackTrace();
             }
+            sName.setText("");
+            quan.setText("");
         }
         if (e.getSource() == checkout){
             try {
@@ -185,7 +201,20 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
             }
         }
         if (e.getSource() == remove){
-            //remove things from the text area
+            lMessage.setText("");
+            String n = sName.getText();
+            String q = quan.getText();
+            if(!n.matches(pattern) || !q.matches(pattern))
+                lMessage.setText("Error: incorrect input");
+            else {
+                s.remove(Integer.parseInt(sName.getText()), Integer.parseInt(quan.getText()));
+                s.list();
+                shoppinglist.setText(s.shop + "\n");
+                s.totals();
+                runningTotal.setText("" + s.total);
+                sName.setText("");
+                quan.setText("");
+            }
         }
         if (e.getSource() == cancel){
             // cancel back to the main menu
