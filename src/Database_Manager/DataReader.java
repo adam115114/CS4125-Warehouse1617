@@ -16,6 +16,7 @@ public class DataReader implements Dinter{
 
     public ArrayList<Employee> employee = new ArrayList<>();
     public ArrayList<Stock> stock = new ArrayList<>();
+    public ArrayList<String> invoice = new ArrayList<>();
 
     public DataReader() throws IOException {
         read();
@@ -25,6 +26,7 @@ public class DataReader implements Dinter{
     {
         employee.clear();
         stock.clear();
+        invoice.clear();
         Employee a;
         Stock b;
         String elements[];
@@ -49,6 +51,18 @@ public class DataReader implements Dinter{
             elements = aLineFromFile.split(",");
             b = new Stock(Integer.parseInt(elements[0]), elements[1], Integer.parseInt(elements[2]), Float.parseFloat(elements[3]));
             stock.add(b);
+        }
+        elements = null;
+        aLineFromFile = "";
+        aFile = new File("res\\invoices.txt");
+        if (!aFile.exists())
+            aFile.createNewFile();
+        in = new Scanner(aFile);
+        while (in.hasNext()){
+            aLineFromFile = in.nextLine();
+            elements = aLineFromFile.split(",");
+            invoice.add(elements[0]); // starting at [0]every second line will have a code for the employee that made the transaction. int format
+            invoice.add(elements[1]); // starting at [1]every second will have the amount the transaction was worth. Float format
         }
     }
 

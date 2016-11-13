@@ -1,8 +1,10 @@
 package Manage_Employee;
 
+import Console.EmployeeEditGUI;
 import Database_Manager.DataReader;
 import objects.Employee;
 
+import javax.swing.*;
 import java.io.IOException;
 
 
@@ -21,16 +23,24 @@ public class Employee_Manager implements Einter
     public void addEmployee(String name, String password, boolean manager) throws IOException {
         DataReader reader = new DataReader();
         int x = reader.employee.get(reader.employee.size() - 1).getEmpno();
+        x++;
         Employee e = new Employee(x, name, password, manager);
         reader.employee.add(e);
         reader.update();
+        JOptionPane.showMessageDialog(null, "New employee created. \n" +
+                                            "info:\n" +
+                                            "Name:                " + name +
+                                            "\nPassword:       " + password +
+                                            "\nManager:          " + manager +
+                                            "\nEmployee No.:   " + x);
 
 
     }
     public void deleteEmployee(String name, String password) throws IOException {
         DataReader reader = new DataReader();
         boolean checker  = true;
-        for (int x = 0; x <= reader.employee.size() || checker == true; x ++ ){
+        System.out.println(reader.employee.size());
+        for (int x = 0; x < reader.employee.size() && checker == true; x ++ ){
             if (reader.employee.get(x).getName().equals(name) && reader.employee.get(x).getPassword().equals(password)){
                 reader.employee.remove(x);
                 checker = false;
@@ -39,12 +49,8 @@ public class Employee_Manager implements Einter
             }
         }
         if(checker){
-            /**
-             *  display to the screen in a lMessage that that person wasn't there to delete and to try again
-             */
+            JOptionPane.showMessageDialog(null, "The employee with those details doesn't exists.\nPlease try again.");
         }
-
-
     }
 }
 

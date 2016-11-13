@@ -1,7 +1,6 @@
 package Console;
 
 import Database_Manager.DataReader;
-import objects.Employee;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,10 +12,10 @@ import java.io.IOException;
  * Created by adam on 30/10/2016.
  */
 public class menu extends JFrame implements ActionListener {
+    public int id;
     JLabel lMessage;
     JButton option1, option2, option4, option3;
     JPanel jPanel1;
-    public int id;
 
     public menu() throws IOException {
         makeWindow();
@@ -38,8 +37,8 @@ public class menu extends JFrame implements ActionListener {
             option4 = new JButton("Manage employees");
             option4.setFont(new Font("", Font.PLAIN, 18));
             option4.addActionListener(this);
-            jPanel1.setLayout(new GridLayout(5,1));
-        }else{
+            jPanel1.setLayout(new GridLayout(5, 1));
+        } else {
             jPanel1.setLayout(new GridLayout(4, 1));
         }
         this.setTitle("Main Menu");
@@ -71,7 +70,7 @@ public class menu extends JFrame implements ActionListener {
             this.dispose();
             LoginPage b = new LoginPage();
         }
-        if (e.getSource() == option4){
+        if (e.getSource() == option4) {
             this.dispose();
             EmployeeManagementGUI c = new EmployeeManagementGUI();
         }
