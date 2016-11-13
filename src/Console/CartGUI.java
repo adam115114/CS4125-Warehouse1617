@@ -30,16 +30,14 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
     public void makeWindow()
     {
         panel = new JPanel();
-        panel.setPreferredSize(new Dimension(800,600));
-        //panel1 = new JPanel();
-        //panel1.setPreferredSize(new Dimension(800,200));
+        panel.setPreferredSize(new Dimension(800,300));
         layout = new GridBagLayout();
         gbc = new GridBagConstraints();
         //Creating constraints and setting anchor and weight
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.insets = new Insets(2,2,2,2);
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        layout.rowHeights = new int[] {100,100,100,100,100,100};
+        layout.rowHeights = new int[] {50,50,50,50,50,50};
         layout.columnWidths =new int[] {200,200,200,200};
         panel.setLayout(layout);
 
@@ -147,7 +145,7 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
         this.setTitle("Cart");
         this.setResizable(false);
         this.setVisible(true);
-        this.setSize(800,600);
+        this.pack();
 
         addToCart.addActionListener(this);
         checkout.addActionListener(this);
@@ -158,6 +156,7 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
         } catch (IOException e) {
             e.printStackTrace();
         }
+        shoppinglist.append("Number\tProduct\tQuantity\tPrice\n");
     }
     //public static void main(String [] args){
       //  CartGUI a = new CartGUI();
@@ -169,6 +168,9 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
                 s.addToCart(Integer.parseInt(sName.getText()),Integer.parseInt(quan.getText()));
                 sName.setText("");
                 quan.setText("");
+                shoppinglist.append(s.shop + "\n");
+                s.totals();
+                runningTotal.setText("" + s.total);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -196,4 +198,3 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
         }
     }
 }
-
