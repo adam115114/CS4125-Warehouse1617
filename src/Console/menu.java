@@ -1,6 +1,7 @@
 package Console;
 
 import Database_Manager.DataReader;
+import objects.Employee;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,9 +73,7 @@ public class menu extends JFrame implements ActionListener {
         }
         if (e.getSource() == option4){
             this.dispose();
-            /**
-             * add code her for the manager GUI
-             */
+            EmployeeManagementGUI c = new EmployeeManagementGUI();
         }
     }
 }
