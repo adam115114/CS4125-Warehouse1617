@@ -14,7 +14,7 @@ public class EmployeeManagementGUI extends JFrame implements ActionListener, Cin
     public EmployeeManagementGUI(){ makeWindow(); }
 
     private  JLabel lMessage;
-    private JButton option1, option2, option3, option4;
+    private JButton option1, option3, option4;
     private JPanel panel;
     public void makeWindow() {
         panel = new JPanel();
@@ -35,15 +35,15 @@ public class EmployeeManagementGUI extends JFrame implements ActionListener, Cin
         panel.add(option3);
         panel.add(option4);
         this.add(panel);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(400,400);
         this.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == option1){
-            /**
-             * add new gui for both methods
-             */
+            this.dispose();
+            EmployeeEditGUI one = new EmployeeEditGUI();
 
         }if(e.getSource() == option3) {
             /**
