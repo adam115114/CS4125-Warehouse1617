@@ -1,6 +1,7 @@
 package Console;
 
 import Database_Manager.DataReader;
+import Manage_Stock.Stock_Manager;
 import objects.Stock;
 
 import javax.swing.*;
@@ -17,8 +18,6 @@ public class updateStock extends JFrame implements ActionListener, Cinter{
     private JTextField itemId, quanId;
     private JButton include, remove, back;
     private JPanel panel, panel1;
-    private DataReader dr;
-    private boolean madeObj, NF;
 
     public  updateStock(){ makeWindow();}
 
@@ -50,9 +49,6 @@ public class updateStock extends JFrame implements ActionListener, Cinter{
         this.add(panel);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-        try { dr = new DataReader(); madeObj = true; }
-        catch (IOException exc) { madeObj = false; }
-        NF = false;
     }
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == remove){
@@ -60,61 +56,22 @@ public class updateStock extends JFrame implements ActionListener, Cinter{
              * incorrect or there is not enough stock to remove the print a
              * error message to lMessage with lMessage.setText("error message");
              */
-            for (Stock s: dr.stock)
-            {
-                try {
-                    if (s.getStockNum() == Integer.parseInt(itemId.getText()))
-                    {
-                        s.setQuantity(s.getQuantity() - Integer.parseInt(quanId.getText()));
-                        NF = false;
-                        break;
-                    }
-                } catch (NumberFormatException exc)
-                {
-                    lMessage.setText("Failed to convert to an Int.");
-                    NF = true;
-                }
-            }
-            if (NF)
-                lMessage.setText("Failed to find an Item with id: " + itemId.getText());
-            else {
-                lMessage.setText("Succeeded removing the quantity.");
-            }
-            itemId.setText("");
-            quanId.setText("");
+            Stock_Manager sm = new Stock_Manager();
+            lMessage.setText(sm.remStock(itemId.getText(), quanId.getText()));
         }
         if (e.getSource() == include){
             /**add stock to the stock folder there will be no checks except
              * that the the quanity is an int. if successful then print an
              * acceptance message to the to lMessage with lMessage.setText("acceptants message");
              */
-            for (Stock s: dr.stock)
-            {
-                try {
-                    if (s.getStockNum() == Integer.parseInt(itemId.getText()))
-                    {
-                        s.setQuantity(Integer.parseInt(quanId.getText()) + s.getQuantity());
-                        NF = false;
-                        break;
-                    } else { NF = true; }
-                } catch (NumberFormatException exc) {
-                    lMessage.setText("Failed to convert ItemID to int.");
-                }
-            }
-            if (NF)
-                lMessage.setText("Failed to find an Item with id: " + itemId.getText());
-            else {
-                lMessage.setText("Succeeded the quantity update.");
-            }
-            itemId.setText("");
-            quanId.setText("");
+            Stock_Manager sm = new Stock_Manager();
+            lMessage.setText(sm.addStock(itemId.getText(), quanId.getText()));
         }
         if (e.getSource() == back){
             // cancel back to the main menu
             this.dispose();
             try {
                 menu a = new menu();
-                dr.update();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import Database_Manager.DataReader;
+import Manage_Stock.Stock_Manager;
 import objects.Stock;
 
 /**
@@ -20,9 +21,8 @@ public class ViewStock extends JFrame implements ActionListener {
     private JLabel lMessage, title;
     private JScrollPane scroll;
     private JPanel panel;
-    private DataReader dr;
 
-    public ViewStock(Boolean checker) throws IOException {
+    public ViewStock(Boolean checker){
         jDisplay = new JTextArea();
         scroll = new JScrollPane(jDisplay);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -31,13 +31,10 @@ public class ViewStock extends JFrame implements ActionListener {
         panel = new JPanel();
         back = new JButton("back");
         back.addActionListener(this);
-        dr = new DataReader();
         if (checker) {
             jDisplay.setEditable(false);
-            String displayText = "";
-            for (Stock s : dr.stock) {
-                jDisplay.append("ID: " + s.getStockNum() + ", Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice() + "\n");
-            }
+            Stock_Manager sm = new Stock_Manager();
+            jDisplay.setText(sm.getAllStock());
             panel.add(scroll);
             panel.add(back);
         } else {
@@ -77,30 +74,14 @@ public class ViewStock extends JFrame implements ActionListener {
         if (e.getSource() == submit) {
             String userInput = input.getText();
             input.setText("");
-            boolean found = false;
             lMessage.setText("");
-            if (userInput.matches("[0-9]+")) {
-                try {
-                    int inputNum = Integer.parseInt(userInput);
-                    for (Stock s : dr.stock) {
-                        if (s.getStockNum() == inputNum) {
-                            jDisplay.append("Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice() + "\n");
-                            found = true;
-                        }
-                    }
-                } catch (NumberFormatException exc) {
-                    lMessage.setText("Failed to convert input to a number.");
-                }
-            } else {
-                for (Stock s : dr.stock) {
-                    if (s.getName() == userInput) {
-                        jDisplay.append("Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice());
-                        found = true;
-                    }
-                }
-            }
-            if (!found)
-                lMessage.setText("Could not find an item with: " + userInput);
+            Stock_Manager sm = new Stock_Manager();
+            String str = sm.getStockItem(userInput);
+            if (str.equals("ERROR"))
+            {
+                lMessage.setText("An error has occurred, The requested item may not exist.");
+            } else
+                jDisplay.append(str);
             /**
              * here is where you add the code to look for the item and return it to jDisplay or if it doesn't exists
              * then print a error message to lMessage

@@ -3,6 +3,7 @@ package Manage_Stock;
 import Database_Manager.DataReader;
 import objects.Stock;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,42 +18,84 @@ public class Stock_Manager implements Sinter
     private ArrayList<Stock> stock = new ArrayList<>();
     private DataReader dr;
 
-    public Stock_Manager() throws IOException
+    private boolean NF;
+
+    public Stock_Manager()
     {
-        dr = new DataReader();
+        try { dr = new DataReader(); }
+        catch (IOException e) {JOptionPane.showMessageDialog(null, "An error has occurred in trying to read the files.");}
         stock = dr.stock;
+        NF = true;
     }
 
-    public void addStock() throws IOException
+    public String addStock(String iId, String quant)
     {
-        String input, temp[];
-        int stockID = 0, quan = 0;
-        boolean converted = false;
-        Scanner in = new Scanner(System.in);
-
-        print("Please enter the stock update (<Stock ID> <Quantity Added>): ", false);
-        input = in.nextLine();
-        temp = input.split(" ");
-        try
+        for (Stock s: dr.stock)
         {
-            stockID = Integer.parseInt(temp[0]);
-            quan = Integer.parseInt(temp[1]);
-            converted = true;
-        } catch (NumberFormatException e)
-        {
-            e.printStackTrace();
-        }
-        if (converted)
-        {
-            // This is for-each loop, it iterates on the stock arraylist using a stock object("s" in this case) as a placeholder
-            for (Stock s : stock)
-                if (s.getStockNum() == stockID)
+            try {
+                if (s.getStockNum() == Integer.parseInt(iId))
                 {
-                    s.setQuantity(s.getQuantity() + quan);
-                }
+                    s.setQuantity(Integer.parseInt(quant) + s.getQuantity());
+                    NF = false;
+                    break;
+                } else { NF = true; }
+            } catch (NumberFormatException exc) {
+                return "Failed to convert ItemID to int.";
+            }
         }
-        dr.stock = stock;
-        //dr.update();
+        if (NF)
+            return "Failed to find an Item with id: " + iId;
+        else {
+            return "Succeeded the quantity update.";
+        }
+    }
+
+    public String remStock(String iId, String quant)
+    {
+        for (Stock s: dr.stock)
+        {
+            try {
+                if (s.getStockNum() == Integer.parseInt(iId))
+                {
+                    s.setQuantity(s.getQuantity() - Integer.parseInt(quant));
+                    NF = false;
+                    break;
+                }
+            } catch (NumberFormatException exc) {
+                return "Failed to convert to an Int.";
+            }
+        }
+        if (NF)
+            return "Failed to find an Item with id: " + iId;
+        else
+            return "Succeeded removing the quantity.";
+    }
+
+    public String getAllStock()
+    {
+        String str = "";
+        for (Stock s : stock)
+        {
+            str += "ID: " + s.getStockNum() + ", Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice() + "\n";
+        }
+        return str;
+    }
+
+    public String getStockItem(String iId)
+    {
+        if (iId.matches("[0-9]+")) {
+            try {
+                int inputNum = Integer.parseInt(iId);
+                for (Stock s : dr.stock) {
+                    if (s.getStockNum() == inputNum) {
+                        return "Name: " + s.getName() + ", Quantity: " + s.getQuantity() + ", Price: " + s.getPrice() + "\n";
+                    }
+                }
+            } catch (NumberFormatException exc) {
+                return "ERROR";
+            }
+        }
+        return "ERROR";
     }
 
     public void checkStock() throws IOException
