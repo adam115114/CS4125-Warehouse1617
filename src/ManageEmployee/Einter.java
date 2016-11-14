@@ -1,4 +1,4 @@
-package Manage_Employee;
+package ManageEmployee;
 
 import java.io.IOException;
 

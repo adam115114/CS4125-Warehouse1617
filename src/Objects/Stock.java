@@ -1,4 +1,4 @@
-package objects;
+package Objects;
 
 public class Stock {
     private int stockNum;

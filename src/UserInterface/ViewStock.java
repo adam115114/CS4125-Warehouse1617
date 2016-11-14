@@ -1,4 +1,4 @@
-package Console;
+package UserInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,9 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import Database_Manager.DataReader;
-import Manage_Stock.Stock_Manager;
-import objects.Stock;
+import ManageStock.Stock_Manager;
 
 /**
  * Created by adam on 11/11/2016.
@@ -22,7 +20,7 @@ public class ViewStock extends JFrame implements ActionListener {
     private JScrollPane scroll;
     private JPanel panel;
 
-    public ViewStock(Boolean checker){
+    public ViewStock(Boolean checker) throws IOException {
         jDisplay = new JTextArea();
         scroll = new JScrollPane(jDisplay);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -75,7 +73,12 @@ public class ViewStock extends JFrame implements ActionListener {
             String userInput = input.getText();
             input.setText("");
             lMessage.setText("");
-            Stock_Manager sm = new Stock_Manager();
+            Stock_Manager sm = null;
+            try {
+                sm = new Stock_Manager();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             String str = sm.getStockItem(userInput);
             if (str.equals("ERROR"))
             {

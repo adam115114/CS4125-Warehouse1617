@@ -1,6 +1,6 @@
-package Console;
+package UserInterface;
 
-import Database_Manager.DataReader;
+import DatabaseManager.DataReader;
 
 import javax.swing.*;
 import java.awt.*;

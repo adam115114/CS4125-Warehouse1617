@@ -1,4 +1,4 @@
-package Manage_Sales;
+package ManageSales;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,11 +6,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
-import Database_Manager.*;
-import Console.*;
-import objects.Stock;
+import DatabaseManager.*;
+import UserInterface.*;
+import Objects.Stock;
 
 public class Sales implements Sinter {
     Print p = new Print();

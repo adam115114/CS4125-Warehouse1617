@@ -1,16 +1,13 @@
-package Database_Manager;
+package DatabaseManager;
 
-import Console.Print;
-import objects.Employee;
-import objects.Stock;
+import UserInterface.Print;
+import Objects.Employee;
+import Objects.Stock;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.Exchanger;
 
 public class DataReader implements Dinter{
 

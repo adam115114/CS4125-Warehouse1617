@@ -1,8 +1,6 @@
-package Console;
+package UserInterface;
 
-import Database_Manager.DataReader;
-import Manage_Stock.Stock_Manager;
-import objects.Stock;
+import ManageStock.Stock_Manager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,9 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-/**
- * Created by adam on 11/11/2016.
- */
+
 public class updateStock extends JFrame implements ActionListener, Cinter{
     private JLabel itemLabel, quanLabel, lMessage;
     private JTextField itemId, quanId;
@@ -56,7 +52,12 @@ public class updateStock extends JFrame implements ActionListener, Cinter{
              * incorrect or there is not enough stock to remove the print a
              * error message to lMessage with lMessage.setText("error message");
              */
-            Stock_Manager sm = new Stock_Manager();
+            Stock_Manager sm = null;
+            try {
+                sm = new Stock_Manager();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             lMessage.setText(sm.remStock(itemId.getText(), quanId.getText()));
         }
         if (e.getSource() == include){
@@ -64,7 +65,12 @@ public class updateStock extends JFrame implements ActionListener, Cinter{
              * that the the quanity is an int. if successful then print an
              * acceptance message to the to lMessage with lMessage.setText("acceptants message");
              */
-            Stock_Manager sm = new Stock_Manager();
+            Stock_Manager sm = null;
+            try {
+                sm = new Stock_Manager();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             lMessage.setText(sm.addStock(itemId.getText(), quanId.getText()));
         }
         if (e.getSource() == back){

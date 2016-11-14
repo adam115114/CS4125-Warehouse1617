@@ -1,7 +1,4 @@
-package Console;
-
-import Manage_Stock.Stock_Manager;
-import objects.Stock;
+package UserInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,10 +54,18 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
                 if (check != null) {
                     check = check.toLowerCase();
                     if (check.equals("all stock")) {
-                        ViewStock a = new ViewStock(true);
+                        try {
+                            ViewStock a = new ViewStock(true);
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                         answer = false;
                     } else if (check.equals("certain stock")) {
-                        ViewStock a = new ViewStock(false);
+                        try {
+                            ViewStock a = new ViewStock(false);
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                         answer = false;
                     } else {
                         JOptionPane.showMessageDialog(null, "incorrect input format. Please try again.");

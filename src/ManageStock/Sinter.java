@@ -1,6 +1,4 @@
-package Manage_Stock;
-
-import java.io.IOException;
+package ManageStock;
 
 /**
  * Created by Jason.
@@ -15,5 +13,4 @@ public interface Sinter
 
     String getStockItem(String iId);
 
-    void checkStock() throws IOException;
 }

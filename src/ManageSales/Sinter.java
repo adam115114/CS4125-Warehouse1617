@@ -1,4 +1,4 @@
-package Manage_Sales;
+package ManageSales;
 
 import java.io.IOException;
 

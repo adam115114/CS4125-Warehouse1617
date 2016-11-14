@@ -1,6 +1,6 @@
-package Console;
+package UserInterface;
 
-import Manage_Employee.Employee_Manager;
+import ManageEmployee.Employee_Manager;
 
 import javax.swing.*;
 import java.awt.*;

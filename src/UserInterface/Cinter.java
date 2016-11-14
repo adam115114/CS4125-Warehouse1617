@@ -1,6 +1,4 @@
-package Console;
-
-import java.awt.event.ActionListener;
+package UserInterface;
 
 /**
  * Created by adam on 31/10/2016.

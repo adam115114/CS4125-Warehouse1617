@@ -1,8 +1,7 @@
-package Manage_Employee;
+package ManageEmployee;
 
-import Console.EmployeeEditGUI;
-import Database_Manager.DataReader;
-import objects.Employee;
+import DatabaseManager.DataReader;
+import Objects.Employee;
 
 import javax.swing.*;
 import java.io.IOException;

@@ -1,6 +1,6 @@
-package Console;
+package UserInterface;
 
-import Manage_Sales.Sales;
+import ManageSales.Sales;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by Tadhg on 01/11/2016.
  */
-public class CartGUI extends JFrame implements Cinter, ActionListener
+public class Cart extends JFrame implements Cinter, ActionListener
 {
 
     private JTextField sName, quan;
@@ -23,7 +23,7 @@ public class CartGUI extends JFrame implements Cinter, ActionListener
     private JTextArea shoppinglist;
     private Sales s;
 
-    public CartGUI() {
+    public Cart() {
         makeWindow();
     }
 

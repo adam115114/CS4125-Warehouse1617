@@ -1,4 +1,4 @@
-package Database_Manager;
+package DatabaseManager;
 
 import java.io.IOException;
 

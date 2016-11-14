@@ -1,4 +1,4 @@
-package Console;
+package UserInterface;
 
 import java.io.BufferedWriter;
 import java.io.File;

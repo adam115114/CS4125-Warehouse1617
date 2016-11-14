@@ -1,6 +1,6 @@
-package Console;
+package UserInterface;
 
-import Database_Manager.DataReader;
+import DatabaseManager.DataReader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,7 +63,7 @@ public class menu extends JFrame implements ActionListener {
         }
         if (e.getSource() == option2) {
             this.dispose();
-            CartGUI c = new CartGUI();
+            Cart c = new Cart();
 
         }
         if (e.getSource() == option3) {
