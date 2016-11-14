@@ -72,7 +72,7 @@ public class menu extends JFrame implements ActionListener {
         }
         if (e.getSource() == option4) {
             this.dispose();
-            EmployeeManagementGUI c = new EmployeeManagementGUI();
+            EmployeeMenu c = new EmployeeMenu();
         }
     }
 }

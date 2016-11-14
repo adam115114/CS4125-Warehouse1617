@@ -2,7 +2,7 @@ package ManageSales;
 
 import java.io.IOException;
 
-interface Sinter {
+interface SAinter {
     boolean addToCart(int num, int quan) throws IOException;
 
     void invoice() throws IOException;

@@ -30,12 +30,14 @@ public class ViewStock extends JFrame implements ActionListener {
         back = new JButton("back");
         back.addActionListener(this);
         if (checker) {
+            this.setTitle("View All Stock");
             jDisplay.setEditable(false);
             Stock_Manager sm = new Stock_Manager();
             jDisplay.setText(sm.getAllStock());
             panel.add(scroll);
             panel.add(back);
         } else {
+            this.setTitle("View Certain Stock");
             title = new JLabel("Enter Item ID");
             submit = new JButton("submit");
             submit.addActionListener(this);

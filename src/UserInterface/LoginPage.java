@@ -51,6 +51,7 @@ public class LoginPage extends JFrame implements ActionListener, Cinter {
         this.getContentPane().add(BorderLayout.CENTER, panel);
         this.getContentPane().add(BorderLayout.SOUTH, panel1);
         this.setSize(350, 150);
+        this.setTitle("Log In Page");
         this.setVisible(true);
     }
 

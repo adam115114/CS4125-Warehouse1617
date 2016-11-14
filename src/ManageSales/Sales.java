@@ -11,7 +11,7 @@ import DatabaseManager.*;
 import UserInterface.*;
 import Objects.Stock;
 
-public class Sales implements Sinter {
+public class Sales implements SAinter {
     Print p = new Print();
     ArrayList<Stock> cart = new ArrayList<>();
     DataReader e = new DataReader();
@@ -71,7 +71,6 @@ public class Sales implements Sinter {
         String rec = "res\\Receipts\\" + "" + idNum;
         File receipt = new File(rec);
         receipt.createNewFile();
-        p.print("Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal:" + total, true);
         p.printToFile(receipt, "Sale Invoice\t" + currentDate() + "\n" + out + "\nTotal:" + total + "\n", true);
         e.update();
         menu menu = new menu();

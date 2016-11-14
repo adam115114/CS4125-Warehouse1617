@@ -10,9 +10,9 @@ import java.io.IOException;
 /**
  * Created by adam on 12/11/2016.
  */
-public class EmployeeEditGUI extends JFrame implements ActionListener, Cinter, ItemListener {
+public class EmployeeEdit extends JFrame implements ActionListener, Cinter, ItemListener {
 
-    public EmployeeEditGUI() {
+    public EmployeeEdit() {
         makeWindow();
     }
 
@@ -23,7 +23,7 @@ public class EmployeeEditGUI extends JFrame implements ActionListener, Cinter, I
     private JButton submit, remove, cancel;
     private JPanel panel, panel1;
 
-    public void makeWindow() {
+    public void makeWindow() { // This method is used to make the GUI for Editing employees
         panel1 = new JPanel();
         panel = new JPanel();
         lMessage = new JLabel();
@@ -43,9 +43,11 @@ public class EmployeeEditGUI extends JFrame implements ActionListener, Cinter, I
         submit.setFont(new Font("", Font.BOLD, 12));
         remove = new JButton("Remove employee");
         remove.setFont(new Font("", Font.BOLD, 12));
+        // Add actionListeners to the buttons
         submit.addActionListener(this);
         remove.addActionListener(this);
         cancel.addActionListener(this);
+        // Adding Objects to the Panel
         panel.add(name);
         panel.add(nameInput);
         panel.add(password);
@@ -54,8 +56,9 @@ public class EmployeeEditGUI extends JFrame implements ActionListener, Cinter, I
         panel.add(remove);
         panel.add(manager);
         panel.add(cancel);
-        this.pack();
         panel1.add(lMessage);
+        this.pack(); // to get rid of unnecessary space on the JFrame
+        this.setTitle("Update Employees");
         this.getContentPane().add(BorderLayout.CENTER, panel);
         this.getContentPane().add(BorderLayout.SOUTH, panel1);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -63,42 +66,40 @@ public class EmployeeEditGUI extends JFrame implements ActionListener, Cinter, I
         this.setVisible(true);
     }
 
-    public void itemStateChanged(ItemEvent e) {
+    public void itemStateChanged(ItemEvent e) { // This is for the Check box on the GUI that updates if a new employee is a manager or not.
         Object source = e.getItemSelectable();
 
         if (source == manager) {
             checker = true;
         }
-        if (e.getStateChange() == ItemEvent.DESELECTED) {
+        if (e.getStateChange() == ItemEvent.DESELECTED) {// if the box is unselected during the process it will still update till it's passed into the next class
             checker = false;
         }
 
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {// basic actionListener for 3 buttons
         String name = nameInput.getText();
         String password = passInput.getText();
         nameInput.setText("");
         passInput.setText("");
 
         if (e.getSource() == submit) {
-            try {
+            try {// This doesn't make a GUI. This Object just communicates with the DataReader to add a new employee
                 Employee_Manager one = new Employee_Manager(true, name, password, checker);
                 lMessage.setText("New employee added.");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
 
-        }
-        if (e.getSource() == remove) {
-            try {
+        }if (e.getSource() == remove) {
+            try {// This doesn't make a GUI. This Object just communicates with the DataReader to remove an existing employee
                 Employee_Manager one = new Employee_Manager(false, name, password, checker);
                 lMessage.setText( name + " was removed.");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-        }
-        if (e.getSource() == cancel) {
+        }if (e.getSource() == cancel) {// This option exists on all  GUI and it will bring you back to the main Menu.
             this.dispose();
             try {
                 menu a = new menu();
@@ -106,7 +107,8 @@ public class EmployeeEditGUI extends JFrame implements ActionListener, Cinter, I
                 e1.printStackTrace();
             }
         }
-        manager.repaint();
+        manager.setSelected(false); // This at the end of removing or adding an employee it will look like the GUI reset
+
     }
 }
 

@@ -9,9 +9,9 @@ import java.io.IOException;
 /**
  * Created by adam on 12/11/2016.
  */
-public class EmployeeManagementGUI extends JFrame implements ActionListener, Cinter {
+public class EmployeeMenu extends JFrame implements ActionListener, Cinter {
 
-    public EmployeeManagementGUI(){ makeWindow(); }
+    public EmployeeMenu(){ makeWindow(); }
 
     private  JLabel lMessage;
     private JButton option1, option3, option4;
@@ -35,6 +35,7 @@ public class EmployeeManagementGUI extends JFrame implements ActionListener, Cin
         panel.add(option3);
         panel.add(option4);
         this.add(panel);
+        this.setTitle("Employee Management Menu");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(400,400);
         this.setVisible(true);
@@ -43,10 +44,11 @@ public class EmployeeManagementGUI extends JFrame implements ActionListener, Cin
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == option1){
             this.dispose();
-            EmployeeEditGUI one = new EmployeeEditGUI();
+            EmployeeEdit one = new EmployeeEdit();
 
         }if(e.getSource() == option3) {
-            EmployeeRecord one = new EmployeeRecord();
+            this.dispose();
+            EmployeeAudit one = new EmployeeAudit();
         }if (e.getSource() == option4){
             this.dispose();
             try {

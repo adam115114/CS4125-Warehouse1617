@@ -42,6 +42,7 @@ public class updateStock extends JFrame implements ActionListener, Cinter{
         this.getContentPane().add(BorderLayout.CENTER, panel);
         this.getContentPane().add(BorderLayout.SOUTH, panel1);
         this.setSize(400, 150);
+        this.setTitle("Update Stock");
         this.add(panel);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);

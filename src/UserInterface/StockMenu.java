@@ -31,13 +31,14 @@ public class StockMenu extends JFrame implements ActionListener, Cinter {
         back.addActionListener(this);
         viewS.addActionListener(this);
         updateS.addActionListener(this);
-        this.setSize(300,300);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         panel.setLayout(new GridLayout(4, 1));
         panel.add(lMessage);
         panel.add(viewS);
         panel.add(updateS);
         panel.add(back);
+        this.setTitle("Stock Menu");
+        this.setSize(300,300);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.add(panel);
         this.setVisible(true);
 

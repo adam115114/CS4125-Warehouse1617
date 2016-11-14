@@ -11,8 +11,8 @@ import java.io.IOException;
 /**
  * Created by adam on 13/11/2016.
  */
-public class EmployeeRecord extends JFrame implements ActionListener, Cinter {
-    public EmployeeRecord() {
+public class EmployeeAudit extends JFrame implements ActionListener, Cinter {
+    public EmployeeAudit() {
         makeWindow();
     }
 
@@ -41,6 +41,7 @@ public class EmployeeRecord extends JFrame implements ActionListener, Cinter {
         panel.add(submit);
         panel.add(cancel);
         panel.add(output);
+        this.setTitle("Employee Records");
         this.add(panel);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(400, 200);

@@ -1,8 +1,7 @@
 package DatabaseManager;
 
 import UserInterface.Print;
-import Objects.Employee;
-import Objects.Stock;
+import Objects.*;
 
 import java.io.File;
 import java.io.IOException;

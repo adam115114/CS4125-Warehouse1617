@@ -19,7 +19,7 @@ public class Cart extends JFrame implements Cinter, ActionListener
     private GridBagConstraints gbc;
     private JButton addToCart, checkout, remove, cancel;
     private JLabel lMessage, euro, runningTotal, stock, quantity;
-    private JPanel panel , panel1;
+    private JPanel panel;
     private JTextArea shoppinglist;
     private Sales s;
 

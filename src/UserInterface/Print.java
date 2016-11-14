@@ -7,14 +7,6 @@ import java.io.IOException;
 
 
 public class Print {
-
-    public static void  print(Object obj, boolean check) { // This will not be used after Adam is done with the GUI's
-        if (!check)
-            System.out.print("" + obj);
-        else
-            System.out.println("" + obj);
-    }
-
     public void printToFile(File aFile, String output, Boolean append) throws IOException // This is Sims's file print method
     {
         FileWriter fw = new FileWriter(aFile, append);
